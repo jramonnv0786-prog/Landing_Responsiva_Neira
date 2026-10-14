@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musée de la Révolution Française</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --parchment:       #F2E0B6;
+      --parchment-light: #FAF0D7;
+      --ink:             #1A1208;
+      --ink-muted:       #4A3820;
+      --ink-light:       #7A6040;
+      --lacre:           #9B2335;
+      --lacre-dark:      #7A1A28;
+      --blue-fr:         #002395;
+      --serif:           'Playfair Display', Georgia, serif;
+      --body:            'Libre Baskerville', Georgia, serif;
+      --header-h:        3.5rem;
+      --gutter:          2rem;
+      --maxw:            1280px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--parchment);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: clip;   /* evita scroll lateral sin romper la cabecera sticky */
+    }
+
+    ::selection { background: var(--lacre); color: var(--parchment-light); }
+    [hidden] { display: none !important; }
+
+    .bl { background: var(--blue-fr); }
+    .wh { background: rgba(250,240,215,0.25); }
+    .rd { background: var(--lacre); }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ═════════════════ HEADER + PESTAÑAS ═════════════════
+       Base = monitor estándar (1025px – 1439px).
+       Monitor grande, tablet y móvil se ajustan al final del CSS. */
+
+    header {
+      background: var(--ink);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(242,224,182,0.06);
+    }
+
+    .header-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: var(--header-h);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;   /* logo | pestañas centradas | botón */
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      min-width: 0;
+      justify-self: start;
+    }
+
+    .tricolor-bar { display: flex; height: 1.5rem; gap: 2px; flex-shrink: 0; }
+    .tricolor-bar span { display: block; width: 4px; }
+
+    .logo-text { min-width: 0; }
+
+    .logo-text p {
+      font-family: var(--serif);
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: var(--lacre);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .logo-text .logo-title {
+      font-family: var(--serif);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--parchment-light);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* Barra de pestañas */
+    .tabs {
+      display: flex;
+      align-items: stretch;
+      height: var(--header-h);
+      gap: 2rem;
+    }
+
+    .tab {
+      display: flex;
+      align-items: center;
+      font-family: var(--serif);
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(242,224,182,0.55);
+      text-decoration: none;
+      border-top: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab:hover { color: var(--parchment-light); }
+
+    .tab[aria-selected="true"] {
+      color: var(--parchment-light);
+      border-bottom-color: var(--lacre);
+    }
+
+    .tab:focus-visible {
+      outline: 1px solid var(--lacre);
+      outline-offset: -4px;
+    }
+
+    .btn-header {
+      justify-self: end;
+      font-family: var(--serif);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.15rem;
+      background: var(--lacre);
+      color: var(--parchment-light);
+      text-decoration: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-header:hover { background: var(--lacre-dark); }
+
+    /* Animación al cambiar de pestaña */
+    .panel:not([hidden]) { animation: fadeIn 0.45s ease both; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .panel:not([hidden]) { animation: none; }
+    }
+
+    /* ═════════════════ HERO (pestaña Exposición) ═════════════════ */
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: clamp(440px, 68vh, 720px);
+      min-height: clamp(440px, 68svh, 720px);
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      opacity: 0.45;
+    }
+
+    .hero-overlay-h {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(26,18,8,0.95) 0%, rgba(26,18,8,0.5) 55%, rgba(26,18,8,0.1) 100%);
+    }
+
+    .hero-overlay-v {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,18,8,0.6) 0%, transparent 60%);
+    }
+
+    .hero-tricolor {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-tricolor span { flex: 1; }
+
+    .hero-content {
+      position: relative;
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 4rem var(--gutter) 4.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-text { max-width: 580px; }
+
+    .eyebrow-line {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .eyebrow-line .rule { width: 2rem; height: 1px; background: var(--lacre); flex-shrink: 0; }
+
+    .eyebrow-line span {
+      font-family: var(--serif);
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      color: var(--lacre);
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3.25rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--parchment-light);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title em,
+    .page-head h2 em {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(242,224,182,0.55);
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: rgba(242,224,182,0.6);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+      max-width: 430px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      font-family: var(--serif);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.75rem;
+      background: var(--lacre);
+      color: var(--parchment-light);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-hero:hover { background: var(--lacre-dark); }
+
+    /* ═════════════════ CABECERA DE PÁGINA (hero del resto de pestañas) ═════════════════ */
+
+    .page-head {
+      position: relative;
+      background: var(--ink);
+      padding: 4.5rem 0 4rem;
+      overflow: hidden;
+    }
+
+    .page-head::after {
+      content: attr(data-watermark);
+      position: absolute;
+      right: var(--gutter);
+      bottom: -1.5rem;
+      font-family: var(--serif);
+      font-size: clamp(5rem, 14vw, 11rem);
+      font-weight: 900;
+      font-style: italic;
+      color: rgba(242,224,182,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .page-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      font-weight: 900;
+      color: var(--parchment-light);
+      line-height: 0.95;
+      margin-bottom: 1.1rem;
+    }
+
+    .page-head p {
+      font-size: 0.9rem;
+      color: rgba(242,224,182,0.6);
+      line-height: 1.7;
+      max-width: 540px;
+    }
+    /* ═════════════════ SECCIONES / CABECERAS DE REJILLA ═════════════════ */
+
+    .grid-section { background: var(--parchment); padding: 3.5rem 0; }
+
+    .grid-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow {
+      display: block;
+      font-family: var(--serif);
+      font-size: 0.55rem;
+      letter-spacing: 0.4em;
+      color: var(--lacre);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .grid-head h2 {
+      font-family: var(--serif);
+      font-size: 1.875rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .grid-head .meta {
+      font-size: 0.75rem;
+      color: var(--ink-light);
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    /* Rejilla común: 3 columnas en escritorio */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* ═════════════════ TARJETAS (Exposición) ═════════════════ */
+
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--parchment);
+      border: 1px solid rgba(26,18,8,0.12);
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(155,35,53,0.4);
+      box-shadow: 0 8px 32px rgba(26,18,8,0.12);
+    }
+
+    .card-img {
+      position: relative;
+      height: 11rem;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+      transition: opacity 0.5s, transform 0.5s;
+      display: block;
+    }
+
+    .card:hover .card-img img { opacity: 0.7; transform: scale(1.05); }
+
+    .card-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,18,8,0.7) 0%, transparent 60%);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: var(--lacre);
+      padding: 0.2rem 0.625rem;
+    }
+
+    .card-tag span {
+      font-family: var(--serif);
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      color: var(--parchment-light);
+      text-transform: uppercase;
+    }
+
+    .card-body { padding: 1.25rem; }
+
+    .card-body h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+      transition: color 0.2s;
+    }
+
+    .card:hover .card-body h3 { color: var(--lacre); }
+
+    .card-body p {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* ═════════════════ ARTÍCULOS (Derechos) ═════════════════ */
+
+    .article {
+      position: relative;
+      background: var(--parchment-light);
+      border: 1px solid rgba(26,18,8,0.12);
+      border-top: 3px solid var(--lacre);
+      padding: 1.75rem 1.5rem 1.5rem;
+      transition: box-shadow 0.3s;
+    }
+
+    .article:hover { box-shadow: 0 8px 32px rgba(26,18,8,0.1); }
+
+    .article-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 900;
+      font-style: italic;
+      color: rgba(155,35,53,0.18);
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+    }
+
+    .article h3 {
+      font-family: var(--serif);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--lacre);
+      margin-bottom: 0.25rem;
+    }
+
+    .article h4 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      padding-right: 3rem;
+    }
+
+    .article p {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .quote {
+      margin-top: 2.5rem;
+      background: var(--ink);
+      color: var(--parchment-light);
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .quote-mark {
+      font-family: var(--serif);
+      font-size: 5rem;
+      line-height: 0.6;
+      color: var(--lacre);
+    }
+
+    .quote blockquote {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .quote cite {
+      display: block;
+      margin-top: 0.75rem;
+      font-family: var(--body);
+      font-size: 0.65rem;
+      font-style: normal;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(242,224,182,0.4);
+    }
+
+    /* ═════════════════ PROTAGONISTAS ═════════════════ */
+
+    .person {
+      background: var(--parchment);
+      border: 1px solid rgba(26,18,8,0.12);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .person:hover {
+      border-color: rgba(155,35,53,0.4);
+      box-shadow: 0 8px 32px rgba(26,18,8,0.12);
+    }
+
+    .person-top { display: flex; align-items: center; gap: 1rem; }
+
+    .medallion {
+      flex-shrink: 0;
+      width: 3.75rem;
+      height: 3.75rem;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 2px solid var(--lacre);
+      box-shadow: 0 0 0 3px var(--parchment), 0 0 0 4px rgba(26,18,8,0.2);
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--parchment-light);
+    }
+
+    .person h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      transition: color 0.2s;
+    }
+
+    .person:hover h3 { color: var(--lacre); }
+
+    .person .dates {
+      font-size: 0.65rem;
+      color: var(--ink-light);
+      font-style: italic;
+      margin-top: 0.2rem;
+    }
+
+    .person .role {
+      align-self: flex-start;
+      font-family: var(--serif);
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--parchment-light);
+      background: var(--lacre);
+      padding: 0.2rem 0.625rem;
+    }
+
+    .person p {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* ═════════════════ VISITAR ═════════════════ */
+
+    .info {
+      background: var(--parchment-light);
+      border: 1px solid rgba(26,18,8,0.12);
+      padding: 1.75rem 1.5rem;
+    }
+
+    .info h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(26,18,8,0.12);
+    }
+
+    .info ul { list-style: none; }
+
+    .info li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      padding: 0.45rem 0;
+      border-bottom: 1px dashed rgba(26,18,8,0.1);
+    }
+
+    .info li:last-child { border-bottom: 0; }
+    .info li strong { color: var(--ink); font-weight: 700; text-align: right; }
+    .info li.closed strong { color: var(--lacre); }
+
+    .info p {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    .info p + p { margin-top: 0.6rem; }
+
+    .visit-cta {
+      margin-top: 2.5rem;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .visit-cta .hero-tricolor { width: 4px; }
+
+    .visit-cta h3 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--parchment-light);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .visit-cta p {
+      font-size: 0.75rem;
+      color: rgba(242,224,182,0.5);
+    }
+
+    /* ═════════════════ FOOTER ═════════════════ */
+
+    footer { background: var(--ink); }
+
+    .footer-strip { display: flex; height: 2px; }
+    .footer-strip span { flex: 1; display: block; }
+
+    .footer-main {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-brand p:first-child {
+      font-family: var(--serif);
+      font-size: 0.5rem;
+      letter-spacing: 0.35em;
+      color: var(--lacre);
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .footer-brand h3 {
+      font-family: var(--serif);
+      font-size: 0.875rem;
+      font-weight: 900;
+      color: var(--parchment-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-brand .addr { font-size: 0.6rem; color: rgba(242,224,182,0.3); }
+
+    .footer-motto {
+      font-family: var(--serif);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: rgba(242,224,182,0.18);
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+    }
+
+    .footer-info { text-align: right; }
+
+    .footer-info p {
+      font-size: 0.6rem;
+      color: rgba(242,224,182,0.35);
+      line-height: 1.7;
+    }
+
+    .footer-info .site { color: var(--lacre); margin-top: 0.25rem; }
+
+    .footer-copy {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0.875rem 2rem;
+      border-top: 1px solid rgba(242,224,182,0.08);
+    }
+
+    .footer-copy p { font-size: 0.575rem; color: rgba(242,224,182,0.15); }
+
+
+    /* ==========================================================================
+       TABLET (601px – 1024px) · 2 columnas, pestañas compactas
+       ========================================================================== */
+    @media (min-width: 601px) and (max-width: 1024px) {
+
+      .container,
+      .footer-main,
+      .footer-copy {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+
+      .quote { padding: 2rem; gap: 1.5rem; }
+      .quote blockquote { font-size: 1.1rem; }
+
+      /* Visitar: la tercera tarjeta ocupa todo el ancho */
+      .visit-grid .info:last-child { grid-column: 1 / -1; }
+
+      .footer-main { gap: 1rem; }
+      .footer-motto { display: none; }
+    }
+
+
+    /* ==========================================================================
+       MÓVIL (0 – 600px) · 1 columna, pestañas en una fila bajo el logo
+       ========================================================================== */
+    @media (max-width: 600px) {
+
+      body { font-size: 14px; }
+
+      .container { padding: 0 1rem; }
+
+
+      /* SECCIONES */
+      .grid-section { padding: 2.5rem 0; }
+
+      .grid-head { display: block; margin-bottom: 1.5rem; }
+      .eyebrow { font-size: 0.48rem; letter-spacing: 0.3em; margin-bottom: 0.4rem; }
+      .grid-head h2 { font-size: 1.45rem; line-height: 1.15; }
+      .grid-head .meta { margin-top: 0.6rem; font-size: 0.65rem; }
+
+      .grid { grid-template-columns: 1fr; gap: 1rem; }
+
+      /* TARJETAS */
+      .card-img { height: 190px; }
+      .card-img img { opacity: 0.6; }
+      .card-tag { top: 0.7rem; left: 0.7rem; }
+      .card-tag span { font-size: 0.43rem; letter-spacing: 0.2em; }
+      .card-body { padding: 1.1rem; }
+      .card-body h3 { font-size: 0.95rem; line-height: 1.3; margin-bottom: 0.55rem; }
+      .card-body p { font-size: 0.65rem; line-height: 1.75; }
+
+      /* ARTÍCULOS */
+      .article { padding: 1.4rem 1.1rem 1.2rem; }
+      .article-num { font-size: 2rem; }
+      .article h4 { font-size: 0.95rem; }
+      .article p { font-size: 0.68rem; }
+
+      .quote {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.75rem 1.25rem;
+        margin-top: 1.75rem;
+      }
+
+      .quote-mark { font-size: 3.5rem; }
+      .quote blockquote { font-size: 0.95rem; }
+
+      /* PROTAGONISTAS */
+      .person { padding: 1.2rem; }
+      .medallion { width: 3.25rem; height: 3.25rem; font-size: 0.95rem; }
+      .person h3 { font-size: 0.95rem; }
+      .person p { font-size: 0.66rem; line-height: 1.75; }
+
+      /* VISITAR */
+      .info { padding: 1.4rem 1.1rem; }
+      .info h3 { font-size: 1rem; }
+      .info li, .info p { font-size: 0.66rem; }
+
+      .visit-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.75rem 1.25rem;
+        gap: 1.25rem;
+        margin-top: 1.75rem;
+      }
+
+      .visit-cta h3 { font-size: 1.25rem; }
+      .visit-cta p { font-size: 0.65rem; }
+
+      /* FOOTER */
+      .footer-main {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.75rem 1rem;
+        gap: 1.25rem;
+      }
+
+      .footer-brand { width: 100%; }
+      .footer-brand p:first-child { font-size: 0.45rem; }
+      .footer-brand h3 { font-size: 0.78rem; }
+      .footer-brand .addr { font-size: 0.55rem; line-height: 1.6; }
+
+      .footer-motto { order: 3; font-size: 0.7rem; white-space: normal; letter-spacing: 0.1em; }
+      .footer-info { width: 100%; text-align: left; }
+      .footer-info p { font-size: 0.55rem; }
+
+      .footer-copy { padding: 0.75rem 1rem; }
+      .footer-copy p { font-size: 0.48rem; line-height: 1.6; }
+    }
+
+
+    /* ==========================================================================
+       CABECERA + HERO · AJUSTES POR DISPOSITIVO
+       ========================================================================== */
+
+    /* ── MONITOR GRANDE (≥ 1440px) ── */
+    @media (min-width: 1440px) {
+      :root { --header-h: 4.25rem; --maxw: 1400px; }
+
+      .tricolor-bar { height: 1.8rem; }
+      .tricolor-bar span { width: 5px; }
+      .logo-text p { font-size: 0.6rem; }
+      .logo-text .logo-title { font-size: 0.95rem; }
+
+      .tabs { gap: 2.75rem; }
+      .tab { font-size: 0.72rem; }
+      .btn-header { font-size: 0.66rem; padding: 0.75rem 1.4rem; }
+
+      .hero {
+        min-height: clamp(560px, 76vh, 880px);
+        min-height: clamp(560px, 76svh, 880px);
+      }
+      .hero-text { max-width: 700px; }
+      .eyebrow-line span { font-size: 0.68rem; }
+      .eyebrow-line .rule { width: 3rem; }
+      .hero-title { font-size: clamp(5rem, 5.6vw, 7rem); }
+      .hero-desc { font-size: 1.08rem; max-width: 500px; }
+      .btn-hero { font-size: 0.72rem; padding: 1rem 2.1rem; }
+
+      .page-head { padding: 5.5rem 0 5rem; }
+      .page-head h2 { font-size: clamp(4rem, 4.2vw, 5rem); }
+      .page-head p { font-size: 1rem; max-width: 600px; }
+    }
+
+    /* ── TABLET HORIZONTAL / PORTÁTIL PEQUEÑO (≤ 1024px) ── */
+    @media (max-width: 1024px) {
+      :root { --gutter: 1.5rem; --header-h: 3.25rem; }
+
+      .header-inner { grid-template-columns: auto 1fr; gap: 1rem; }
+      .tabs { justify-self: end; gap: 1.4rem; }
+      .tab { font-size: 0.6rem; letter-spacing: 0.12em; }
+      .btn-header { display: none; }   /* la pestaña "Visitar" ya cumple su función */
+
+      .hero {
+        min-height: clamp(420px, 62vh, 640px);
+        min-height: clamp(420px, 62svh, 640px);
+      }
+      .hero-content { padding: 3.5rem var(--gutter) 4rem; }
+      .hero-title { font-size: clamp(3rem, 7.2vw, 4.4rem); }
+      .hero-desc { font-size: 0.88rem; }
+
+      .page-head { padding: 3.5rem 0 3.25rem; }
+    }
+
+    /* ── TABLET VERTICAL (≤ 860px) · pestañas en segunda fila ── */
+    @media (max-width: 860px) {
+      .header-inner {
+        height: auto;
+        grid-template-columns: 1fr auto;
+        row-gap: 0;
+        padding-top: 0.6rem;
+      }
+
+      .logo { grid-row: 1; grid-column: 1; }
+
+      .btn-header {
+        display: inline-block;
+        grid-row: 1;
+        grid-column: 2;
+        font-size: 0.56rem;
+        padding: 0.55rem 1rem;
+      }
+
+      .tabs {
+        grid-column: 1 / -1;
+        justify-self: stretch;
+        height: auto;
+        gap: 0;
+        margin: 0.6rem calc(-1 * var(--gutter)) 0;
+        border-top: 1px solid rgba(242,224,182,0.08);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .tabs::-webkit-scrollbar { display: none; }
+
+      .tab {
+        flex: 1 1 0;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 0.5rem;
+        font-size: 0.64rem;
+      }
+
+      .tab[aria-selected="true"] { background: rgba(155,35,53,0.12); }
+
+      /* Hero: texto abajo, aprovechando la altura de la pantalla vertical */
+      .hero {
+        min-height: clamp(460px, 60vh, 680px);
+        min-height: clamp(460px, 60svh, 680px);
+      }
+      .hero-content { align-items: flex-end; padding-bottom: 3.5rem; }
+      .hero-text { max-width: 600px; }
+      .hero-title { font-size: clamp(3.1rem, 9vw, 4.5rem); }
+      .hero-desc { max-width: 500px; }
+
+      .hero-overlay-h {
+        background: linear-gradient(to right, rgba(26,18,8,0.92) 0%, rgba(26,18,8,0.6) 60%, rgba(26,18,8,0.3) 100%);
+      }
+      .hero-overlay-v {
+        background: linear-gradient(to top, rgba(26,18,8,0.85) 0%, rgba(26,18,8,0.1) 70%);
+      }
+    }
+
+    /* ── MÓVIL (≤ 600px) ── */
+    @media (max-width: 600px) {
+      :root { --gutter: 1rem; }
+
+      .header-inner { grid-template-columns: 1fr; padding-top: 0.6rem; }
+      .btn-header { display: none; }   /* en móvil manda la barra de pestañas */
+
+      .tricolor-bar { height: 1.5rem; }
+      .tricolor-bar span { width: 3px; }
+      .logo-text p { font-size: 0.45rem; letter-spacing: 0.25em; }
+      .logo-text .logo-title { font-size: 0.78rem; letter-spacing: 0.02em; }
+
+      .tabs { margin-top: 0.6rem; }
+
+      .tab {
+        flex: 1 1 auto;
+        min-height: 46px;
+        padding: 0 0.35rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.05em;
+      }
+
+      /* Hero a pantalla completa (menos la cabecera) */
+      .hero {
+        min-height: clamp(460px, calc(100vh - 5.75rem), 720px);
+        min-height: clamp(460px, calc(100svh - 5.75rem), 720px);
+      }
+
+      .hero-img { object-position: 60% center; opacity: 0.5; }
+
+      .hero-overlay-h {
+        background: linear-gradient(to right, rgba(26,18,8,0.9) 0%, rgba(26,18,8,0.7) 60%, rgba(26,18,8,0.45) 100%);
+      }
+      .hero-overlay-v {
+        background: linear-gradient(to top, rgba(26,18,8,0.95) 0%, rgba(26,18,8,0.2) 65%);
+      }
+
+      .hero-tricolor { width: 3px; }
+
+      .hero-content { padding: 2.5rem var(--gutter) 2rem; }
+      .hero-text { width: 100%; max-width: 100%; }
+
+      .eyebrow-line { gap: 0.6rem; margin-bottom: 0.85rem; }
+      .eyebrow-line .rule { width: 1.5rem; }
+      .eyebrow-line span { font-size: 0.55rem; letter-spacing: 0.35em; }
+
+      .hero-title {
+        font-size: clamp(2.6rem, 13vw, 3.75rem);
+        line-height: 0.92;
+        margin-bottom: 1.1rem;
+      }
+
+      .hero-desc { max-width: none; font-size: 0.82rem; line-height: 1.75; margin-bottom: 1.5rem; }
+
+      .btn-hero {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        padding: 1rem;
+      }
+
+      /* Cabecera de página del resto de pestañas */
+      .page-head { padding: 2.5rem 0 2.25rem; }
+      .page-head::after { bottom: -0.75rem; }
+      .page-head h2 { font-size: clamp(2.1rem, 11vw, 2.9rem); }
+      .page-head p { font-size: 0.8rem; line-height: 1.75; }
+    }
+
+    /* ── MÓVIL PEQUEÑO (≤ 380px) ── */
+    @media (max-width: 380px) {
+      .tab { font-size: 0.58rem; letter-spacing: 0.02em; padding: 0 0.25rem; }
+      .hero-title { font-size: clamp(2.3rem, 12.5vw, 2.9rem); }
+      .hero-desc { font-size: 0.78rem; }
+    }
+
+    /* ── MÓVIL / TABLET EN HORIZONTAL (poca altura) ── */
+    @media (orientation: landscape) and (max-height: 500px) and (max-width: 1024px) {
+      .hero { min-height: 0; }
+      .hero-content { padding: 2rem var(--gutter) 2.25rem; align-items: center; }
+      .hero-title { font-size: clamp(2.4rem, 6vw, 3.2rem); margin-bottom: 0.9rem; }
+      .hero-desc { max-width: 460px; margin-bottom: 1.1rem; }
+      .btn-hero { display: inline-block; width: auto; padding: 0.8rem 1.5rem; }
+      .tab { min-height: 40px; }
+      .page-head { padding: 2rem 0 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header>
+    <div class="header-inner">
+      <a href="#exposicion" class="logo" data-tab="exposicion">
+        <div class="tricolor-bar">
+          <span class="bl"></span>
+          <span class="wh"></span>
+          <span class="rd"></span>
+        </div>
+        <div class="logo-text">
+          <p>Musée Permanent</p>
+          <h1 class="logo-title">La Révolution Française</h1>
+        </div>
+      </a>
+
+      <nav class="tabs" role="tablist" aria-label="Secciones del museo">
+        <a class="tab" role="tab" href="#exposicion"    id="tab-exposicion"    data-tab="exposicion"    aria-controls="exposicion"    aria-selected="true">Exposición</a>
+        <a class="tab" role="tab" href="#derechos"      id="tab-derechos"      data-tab="derechos"      aria-controls="derechos"      aria-selected="false">Derechos</a>
+        <a class="tab" role="tab" href="#protagonistas" id="tab-protagonistas" data-tab="protagonistas" aria-controls="protagonistas" aria-selected="false">Protagonistas</a>
+        <a class="tab" role="tab" href="#visitar"       id="tab-visitar"       data-tab="visitar"       aria-controls="visitar"       aria-selected="false">Visitar</a>
+      </nav>
+
+      <a href="#visitar" class="btn-header" data-tab="visitar">Planificar visita</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════ PESTAÑA 1 · EXPOSICIÓN ══════════ -->
+    <section class="panel" id="exposicion" role="tabpanel" aria-labelledby="tab-exposicion">
+
+      <div class="hero">
+        <img class="hero-img"
+          src="https://images.unsplash.com/photo-1566998398519-7f10a1fa3af4?w=1800&h=800&fit=crop&auto=format"
+          alt="La Liberté guidant le peuple — Delacroix, 1830. Louvre, París" />
+        <div class="hero-overlay-h"></div>
+        <div class="hero-overlay-v"></div>
+        <div class="hero-tricolor">
+          <span class="bl"></span><span class="wh"></span><span class="rd"></span>
+        </div>
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="eyebrow-line">
+              <div class="rule"></div>
+              <span>1789 — 1799</span>
+            </div>
+            <h2 class="hero-title">La Revolución<br><em>Francesa</em></h2>
+            <p class="hero-desc">
+              Diez años que sacudieron el Ancien Régime y transformaron para siempre la concepción de la libertad y los derechos del hombre.
+            </p>
+            <a href="#cards" class="btn-hero">Explorar la exposición</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-section" id="cards">
+        <div class="container">
+          <div class="grid-head">
+            <div>
+              <span class="eyebrow">Exposición permanente</span>
+              <h2>Grandes momentos de la Revolución</h2>
+            </div>
+            <p class="meta">1789 – 1799 · Francia</p>
+          </div>
+
+          <div class="grid">
+
+            <a class="card" href="#">
+              <div class="card-img">
+                <img src="https://images.unsplash.com/photo-1578320339840-73f0a565894c?w=600&h=400&fit=crop&auto=format" alt="Toma de la Bastilla" />
+                <div class="card-fade"></div>
+                <div class="card-tag"><span>14 Juillet 1789</span></div>
+              </div>
+              <div class="card-body">
+                <h3>La Toma de la Bastilla</h3>
+                <p>Más de 800 personas marcharon hacia la fortaleza símbolo del absolutismo. En cuatro horas capitulaba. El 14 de julio se convierte en Fiesta Nacional francesa.</p>
+              </div>
+            </a>
+
+            <a class="card" href="#derechos" data-tab="derechos">
+              <div class="card-img">
+                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop&auto=format" alt="Declaración de Derechos del Hombre" />
+                <div class="card-fade"></div>
+                <div class="card-tag"><span>26 Août 1789</span></div>
+              </div>
+              <div class="card-body">
+                <h3>Declaración de Derechos del Hombre</h3>
+                <p>Aprobada por la Asamblea Nacional Constituyente. Diecisiete artículos que fundan el derecho moderno y la democracia liberal.</p>
+              </div>
+            </a>
+
+            <a class="card" href="#">
+              <div class="card-img">
+                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&h=400&fit=crop&auto=format" alt="Ejecución de Luis XVI" />
+                <div class="card-fade"></div>
+                <div class="card-tag"><span>21 Janvier 1793</span></div>
+              </div>
+              <div class="card-body">
+                <h3>Ejecución de Luis XVI</h3>
+                <p>Por 361 votos contra 360, la Convención condena al rey. Guillotinado en la Plaza de la Revolución ante una multitud en silencio.</p>
+              </div>
+            </a>
+
+            <a class="card" href="#">
+              <div class="card-img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp_VDqBVjS-UhpWjt6CD5pWM8myVkvp08_Qw-4aBnFww&s=10" alt="El Reinado del Terror" />
+                <div class="card-fade"></div>
+                <div class="card-tag"><span>Sept. 1793 — Jul. 1794</span></div>
+              </div>
+              <div class="card-body">
+                <h3>El Reinado del Terror</h3>
+                <p>17.000 ejecuciones oficiales. El Comité de Salvación Pública envía a la guillotina a aristócratas, sacerdotes y finalmente a los propios revolucionarios.</p>
+              </div>
+            </a>
+
+            <a class="card" href="#protagonistas" data-tab="protagonistas">
+              <div class="card-img">
+                <img src="https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8?w=600&h=400&fit=crop&auto=format" alt="Caída de Robespierre" />
+                <div class="card-fade"></div>
+                <div class="card-tag"><span>9 Thermidor 1794</span></div>
+              </div>
+              <div class="card-body">
+                <h3>Caída de Robespierre</h3>
+                <p>La reacción termidoriana pone fin al Terror. Robespierre es arrestado en la Convención y guillotinado al día siguiente sin juicio.</p>
+              </div>
+            </a>
+
+            <a class="card" href="#">
+              <div class="card-img">
+                <img src="https://images.unsplash.com/photo-1499678329028-101435549a4e?w=600&h=400&fit=crop&auto=format" alt="El Golpe de Napoleón" />
+                <div class="card-fade"></div>
+                <div class="card-tag"><span>18 Brumaire 1799</span></div>
+              </div>
+              <div class="card-body">
+                <h3>El Golpe de Napoleón</h3>
+                <p>Bonaparte disuelve el Directorio y toma el poder como Primer Cónsul. La Revolución llega a su fin. Una nueva era comienza.</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════ PESTAÑA 2 · DERECHOS ══════════ -->
+    <section class="panel" id="derechos" role="tabpanel" aria-labelledby="tab-derechos">
+
+      <div class="page-head" data-watermark="1789">
+        <div class="hero-tricolor"><span class="bl"></span><span class="wh"></span><span class="rd"></span></div>
+        <div class="container">
+          <div class="eyebrow-line"><div class="rule"></div><span>26 Août 1789</span></div>
+          <h2>Derechos del Hombre<br><em>y del Ciudadano</em></h2>
+          <p>Diecisiete artículos aprobados por la Asamblea Nacional Constituyente que proclaman la libertad, la igualdad ante la ley y la soberanía de la Nación.</p>
+        </div>
+      </div>
+
+      <div class="grid-section">
+        <div class="container">
+          <div class="grid-head">
+            <div>
+              <span class="eyebrow">Selección de artículos</span>
+              <h2>Los principios fundadores</h2>
+            </div>
+            <p class="meta">6 de 17 artículos</p>
+          </div>
+
+          <div class="grid">
+            <article class="article">
+              <span class="article-num">I</span>
+              <h3>Artículo 1</h3>
+              <h4>Libertad e igualdad</h4>
+              <p>«Los hombres nacen y permanecen libres e iguales en derechos. Las distinciones sociales sólo pueden fundarse en la utilidad común.»</p>
+            </article>
+
+            <article class="article">
+              <span class="article-num">II</span>
+              <h3>Artículo 2</h3>
+              <h4>Derechos naturales</h4>
+              <p>«La finalidad de toda asociación política es la conservación de los derechos naturales e imprescriptibles del hombre. Tales derechos son la libertad, la propiedad, la seguridad y la resistencia a la opresión.»</p>
+            </article>
+
+            <article class="article">
+              <span class="article-num">III</span>
+              <h3>Artículo 3</h3>
+              <h4>Soberanía nacional</h4>
+              <p>«El principio de toda soberanía reside esencialmente en la Nación. Ningún cuerpo, ningún individuo, pueden ejercer una autoridad que no emane expresamente de ella.»</p>
+            </article>
+
+            <article class="article">
+              <span class="article-num">IX</span>
+              <h3>Artículo 9</h3>
+              <h4>Presunción de inocencia</h4>
+              <p>«Puesto que todo hombre se presume inocente mientras no sea declarado culpable, si se juzga indispensable detenerlo, todo rigor que no sea necesario para apoderarse de su persona debe ser severamente reprimido por la ley.»</p>
+            </article>
+
+            <article class="article">
+              <span class="article-num">X</span>
+              <h3>Artículo 10</h3>
+              <h4>Libertad de opinión</h4>
+              <p>«Nadie debe ser incomodado por sus opiniones, inclusive religiosas, a condición de que su manifestación no perturbe el orden público establecido por la ley.»</p>
+            </article>
+
+            <article class="article">
+              <span class="article-num">XI</span>
+              <h3>Artículo 11</h3>
+              <h4>Libertad de expresión</h4>
+              <p>«La libre comunicación de pensamientos y de opiniones es uno de los derechos más preciosos del hombre; en consecuencia, todo ciudadano puede hablar, escribir e imprimir libremente.»</p>
+            </article>
+          </div>
+
+          <div class="quote">
+            <span class="quote-mark">“</span>
+            <div>
+              <blockquote>La ley es la expresión de la voluntad general. Todos los ciudadanos tienen derecho a contribuir a su elaboración.</blockquote>
+              <cite>Artículo 6 · Déclaration des Droits de l'Homme et du Citoyen</cite>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════ PESTAÑA 3 · PROTAGONISTAS ══════════ -->
+    <section class="panel" id="protagonistas" role="tabpanel" aria-labelledby="tab-protagonistas">
+
+      <div class="page-head" data-watermark="Citoyens">
+        <div class="hero-tricolor"><span class="bl"></span><span class="wh"></span><span class="rd"></span></div>
+        <div class="container">
+          <div class="eyebrow-line"><div class="rule"></div><span>Hommes et femmes</span></div>
+          <h2>Los<br><em>Protagonistas</em></h2>
+          <p>Reyes, tribunos, periodistas y pensadoras. Las figuras que impulsaron, resistieron o cerraron la década revolucionaria.</p>
+        </div>
+      </div>
+
+      <div class="grid-section">
+        <div class="container">
+          <div class="grid-head">
+            <div>
+              <span class="eyebrow">Galería de personajes</span>
+              <h2>Rostros de la Revolución</h2>
+            </div>
+            <p class="meta">1743 – 1821</p>
+          </div>
+
+          <div class="grid">
+            <article class="person">
+              <div class="person-top">
+                <div class="medallion">L</div>
+                <div><h3>Luis XVI</h3><p class="dates">1754 – 1793</p></div>
+              </div>
+              <span class="role">Rey de Francia</span>
+              <p>Último rey del Antiguo Régimen. Tras la fuga frustrada a Varennes (1791) pierde la confianza del pueblo; es juzgado por la Convención y guillotinado en enero de 1793.</p>
+            </article>
+
+            <article class="person">
+              <div class="person-top">
+                <div class="medallion">MA</div>
+                <div><h3>María Antonieta</h3><p class="dates">1755 – 1793</p></div>
+              </div>
+              <span class="role">Reina consorte</span>
+              <p>Archiduquesa austriaca convertida en símbolo del lujo de Versalles. Encarcelada en la Conciergerie, fue guillotinada el 16 de octubre de 1793.</p>
+            </article>
+
+            <article class="person">
+              <div class="person-top">
+                <div class="medallion">R</div>
+                <div><h3>Maximilien Robespierre</h3><p class="dates">1758 – 1794</p></div>
+              </div>
+              <span class="role">Jacobino</span>
+              <p>«El Incorruptible». Figura dominante del Comité de Salvación Pública durante el Terror. Derribado el 9 de Termidor y guillotinado al día siguiente.</p>
+            </article>
+
+            <article class="person">
+              <div class="person-top">
+                <div class="medallion">D</div>
+                <div><h3>Georges Danton</h3><p class="dates">1759 – 1794</p></div>
+              </div>
+              <span class="role">Tribuno</span>
+              <p>Orador formidable y ministro de Justicia en 1792. Enfrentado a Robespierre por pedir el fin del Terror, fue guillotinado en abril de 1794.</p>
+            </article>
+
+            <article class="person">
+              <div class="person-top">
+                <div class="medallion">M</div>
+                <div><h3>Jean-Paul Marat</h3><p class="dates">1743 – 1793</p></div>
+              </div>
+              <span class="role">Periodista</span>
+              <p>Desde <em>L'Ami du peuple</em> agitó a los sectores más radicales. Fue asesinado en su bañera por Charlotte Corday el 13 de julio de 1793.</p>
+            </article>
+
+            <article class="person">
+              <div class="person-top">
+                <div class="medallion">OG</div>
+                <div><h3>Olympe de Gouges</h3><p class="dates">1748 – 1793</p></div>
+              </div>
+              <span class="role">Escritora</span>
+              <p>Autora de la <em>Declaración de los Derechos de la Mujer y de la Ciudadana</em> (1791), pionera del feminismo. Guillotinada en noviembre de 1793.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════ PESTAÑA 4 · VISITAR ══════════ -->
+    <section class="panel" id="visitar" role="tabpanel" aria-labelledby="tab-visitar">
+
+      <div class="page-head" data-watermark="Vizille">
+        <div class="hero-tricolor"><span class="bl"></span><span class="wh"></span><span class="rd"></span></div>
+        <div class="container">
+          <div class="eyebrow-line"><div class="rule"></div><span>Informations pratiques</span></div>
+          <h2>Planifica<br><em>tu visita</em></h2>
+          <p>El museo se encuentra en el Domaine de Vizille, en Isère, rodeado de un parque histórico junto a los Alpes franceses.</p>
+        </div>
+      </div>
+
+      <div class="grid-section">
+        <div class="container">
+          <div class="grid-head">
+            <div>
+              <span class="eyebrow">Información práctica</span>
+              <h2>Antes de venir</h2>
+            </div>
+            <p class="meta">Domaine de Vizille · Isère</p>
+          </div>
+
+          <div class="grid visit-grid">
+            <div class="info">
+              <h3>Horario</h3>
+              <ul>
+                <li class="closed"><span>Lunes</span><strong>Cerrado</strong></li>
+                <li><span>Martes – Sábado</span><strong>10:00 – 18:00</strong></li>
+                <li><span>Domingo</span><strong>10:00 – 18:00</strong></li>
+                <li><span>Entrada domingos</span><strong>Libre</strong></li>
+              </ul>
+            </div>
+
+            <div class="info">
+              <h3>Cómo llegar</h3>
+              <p><strong>Dirección:</strong> Domaine de Vizille, 38220 Isère — Francia.</p>
+              <p>A unos 20 km al sur de Grenoble. Acceso en coche y en autobús desde la estación de Grenoble.</p>
+            </div>
+
+            <div class="info">
+              <h3>Servicios</h3>
+              <ul>
+                <li><span>Visitas guiadas</span><strong>Grupos</strong></li>
+                <li><span>Talleres escolares</span><strong>Con reserva</strong></li>
+                <li><span>Accesibilidad</span><strong>PMR</strong></li>
+                <li><span>Parque del castillo</span><strong>Incluido</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="visit-cta">
+            <div class="hero-tricolor"><span class="bl"></span><span class="wh"></span><span class="rd"></span></div>
+            <div>
+              <h3>Liberté · Égalité · Fraternité</h3>
+              <p>Consulta la web oficial para exposiciones temporales y reservas.</p>
+            </div>
+            <a href="#exposicion" class="btn-hero" data-tab="exposicion">Ver la exposición</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <div class="footer-strip">
+      <span class="bl"></span><span class="wh"></span><span class="rd"></span>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <p>Exposición Permanente</p>
+        <h3>Musée de la Révolution Française</h3>
+        <p class="addr">Domaine de Vizille, 38220 Isère — France</p>
+      </div>
+      <p class="footer-motto">Liberté · Égalité · Fraternité</p>
+      <div class="footer-info">
+        <p>Martes a Domingo · 10:00 — 18:00</p>
+        <p>Entrada libre los domingos</p>
+        <p class="site">musee-revolution-francaise.fr</p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>© 2026 Musée de la Révolution Française — Conseil départemental de l'Isère</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const tabs   = Array.from(document.querySelectorAll('[role="tab"]'));
+      const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+      const ids    = panels.map(p => p.id);
+
+      function showTab(id, opts = {}) {
+        if (!ids.includes(id)) id = ids[0];
+
+        tabs.forEach(tab => {
+          const active = tab.dataset.tab === id;
+          tab.setAttribute('aria-selected', active);
+          tab.tabIndex = active ? 0 : -1;
+          if (active && opts.focus) tab.focus();
+          // Si la barra de pestañas hace scroll lateral (móvil), centra la activa
+          // sin mover la página (scrollIntoView desplazaba también el documento)
+          const bar = tab.parentElement;
+          if (active && bar.scrollWidth > bar.clientWidth) {
+            const t = tab.getBoundingClientRect(), b = bar.getBoundingClientRect();
+            bar.scrollLeft += (t.left - b.left) - (b.width - t.width) / 2;
+          }
+        });
+
+        panels.forEach(panel => { panel.hidden = panel.id !== id; });
+
+        if (opts.updateUrl !== false) history.replaceState(null, '', '#' + id);
+        if (opts.scroll !== false) window.scrollTo({ top: 0 });
+      }
+
+      // Cualquier elemento con data-tab cambia de pestaña (pestañas, logo, botones, tarjetas)
+      document.addEventListener('click', e => {
+        const trigger = e.target.closest('[data-tab]');
+        if (!trigger) return;
+        e.preventDefault();
+        showTab(trigger.dataset.tab);
+      });
+
+      // Navegación con teclado: flechas, Inicio y Fin
+      document.querySelector('[role="tablist"]').addEventListener('keydown', e => {
+        const current = tabs.indexOf(document.activeElement);
+        if (current < 0) return;
+        let next = null;
+        if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
+        if (e.key === 'ArrowLeft')  next = (current - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home')       next = 0;
+        if (e.key === 'End')        next = tabs.length - 1;
+        if (next === null) return;
+        e.preventDefault();
+        showTab(tabs[next].dataset.tab, { focus: true });
+      });
+
+      // Abre la pestaña indicada en la URL (p. ej. index.html#visitar)
+      // Sin tocar la URL en la carga: si no, el navegador salta al ancla
+      // y la cabecera queda fuera de pantalla.
+      const initial = location.hash.slice(1);
+      showTab(initial, { scroll: false, updateUrl: false });
+      if (ids.includes(initial)) {
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.addEventListener('load', () => window.scrollTo(0, 0));
+      }
+    })();
+  </script>
+
+</body>
+</html>
