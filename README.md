@@ -1,5 +1,5 @@
 # Landing responsiva
-En este proyecto diseñaremos una interfaz gráfica que tenga qe¡ue ver con algún momento histórico, más concretamente relacionado con la revolución francesa.
+En este proyecto diseñaremos una interfaz gráfica que tenga que ver con algún momento histórico, más concretamente relacionado con la revolución francesa.
 
 Fase 1: Elección de Tema y Estructura (Básica)
 Elige UNA de las siguientes opciones:
