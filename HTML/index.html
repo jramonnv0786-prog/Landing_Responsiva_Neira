@@ -402,68 +402,6 @@
     </div>
   </footer>
 
-  <script>
-    (function () {
-      const tabs   = Array.from(document.querySelectorAll('[role="tab"]'));
-      const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
-      const ids    = panels.map(p => p.id);
-
-      function showTab(id, opts = {}) {
-        if (!ids.includes(id)) id = ids[0];
-
-        tabs.forEach(tab => {
-          const active = tab.dataset.tab === id;
-          tab.setAttribute('aria-selected', active);
-          tab.tabIndex = active ? 0 : -1;
-          if (active && opts.focus) tab.focus();
-          // Si la barra de pestañas hace scroll lateral (móvil), centra la activa
-          // sin mover la página (scrollIntoView desplazaba también el documento)
-          const bar = tab.parentElement;
-          if (active && bar.scrollWidth > bar.clientWidth) {
-            const t = tab.getBoundingClientRect(), b = bar.getBoundingClientRect();
-            bar.scrollLeft += (t.left - b.left) - (b.width - t.width) / 2;
-          }
-        });
-
-        panels.forEach(panel => { panel.hidden = panel.id !== id; });
-
-        if (opts.updateUrl !== false) history.replaceState(null, '', '#' + id);
-        if (opts.scroll !== false) window.scrollTo({ top: 0 });
-      }
-
-      // Cualquier elemento con data-tab cambia de pestaña (pestañas, logo, botones, tarjetas)
-      document.addEventListener('click', e => {
-        const trigger = e.target.closest('[data-tab]');
-        if (!trigger) return;
-        e.preventDefault();
-        showTab(trigger.dataset.tab);
-      });
-
-      // Navegación con teclado: flechas, Inicio y Fin
-      document.querySelector('[role="tablist"]').addEventListener('keydown', e => {
-        const current = tabs.indexOf(document.activeElement);
-        if (current < 0) return;
-        let next = null;
-        if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
-        if (e.key === 'ArrowLeft')  next = (current - 1 + tabs.length) % tabs.length;
-        if (e.key === 'Home')       next = 0;
-        if (e.key === 'End')        next = tabs.length - 1;
-        if (next === null) return;
-        e.preventDefault();
-        showTab(tabs[next].dataset.tab, { focus: true });
-      });
-
-      // Abre la pestaña indicada en la URL (p. ej. index.html#visitar)
-      // Sin tocar la URL en la carga: si no, el navegador salta al ancla
-      // y la cabecera queda fuera de pantalla.
-      const initial = location.hash.slice(1);
-      showTab(initial, { scroll: false, updateUrl: false });
-      if (ids.includes(initial)) {
-        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-        window.addEventListener('load', () => window.scrollTo(0, 0));
-      }
-    })();
-  </script>
 
 </body>
 </html>
