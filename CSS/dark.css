@@ -4,3 +4,20 @@
       --enlaces:    #6C86E8;   azul aclarado para enlaces y eyebrows */
 
       
+body { 
+background-color: #1A1208;  
+color:#F2E0B6;   
+  }
+
+header {
+  background-color: #F2E0B6;
+  color: #1A1208;
+}
+
+.logo {
+  color: #1A1208;
+}
+
+.tab {
+  color: #1A1208;
+}
