@@ -15,24 +15,24 @@
 /* Base */
 
 body {
-  background-color: #1A1208;
+  background-color: #1A1208 ;
   color: #F2E0B6;
 }
 
 
-/* Cabecera (invertida: tinta sobre pergamino) */
+
 
 header {
-  background-color: #F2E0B6;
-  color: #1A1208;
+  background-color: #1A1208;
+  color:#F2E0B6 ;
 }
 
 .logo {
-  color: #1A1208;
+  color: #F2E0B6;
 }
 
 .tab {
-  color: #1A1208;
+  color: #F2E0B6;
 }
 
 
