@@ -1,12 +1,6 @@
-/*
---color-fondo: #121212;           fondo general 
-  --color-tarjeta: #1e1e1e;         cards y bloques 
-  --color-texto: #f5f5f5;           texto principal 
-  --color-texto-secundario: #d0d0d0;
+/*    --fondo:      #1A1208;   la tinta pasa a ser el fondo 
+      --text:    #F2E0B6;   el pergamino pasa a ser el texto 
+      --botones_etiquet:   #9B2335;   igual, para botones y etiquetas 
+      --enlaces:    #6C86E8;   azul aclarado para enlaces y eyebrows */
 
-  --color-dorado: #c9a227;          títulos y botones
-
-  --color-exposicion: #121212;        negro 
-  --color-derechos: #17130d;        marrón oscuro 
-  --color-protagonistas: #1a1010;   rojo oscuro 
-  --color-visitar: #101813;         verde oscuro  */
+      

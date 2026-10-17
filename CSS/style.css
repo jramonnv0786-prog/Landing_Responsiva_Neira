@@ -1,5 +1,140 @@
-*{
-    margin: 0;
-    padding: 0;
-    
+/*
+  --Fondogeneral: #F2E0B6;   fondo general, tono de papel antiguo 
+  --TexCabPie:       #1A1208;   texto, cabecera y pie de página 
+  --botones_etiquetas_nArt:     #9B2335;   botones, etiquetas y números de artículo 
+  --enlaces:   #002395;   eyebrows, enlaces y franja azul de la tricolor */
+
+header {
+  background-color: #1A1208 ;  
+  color:#F2E0B6 ;   
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;                       
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #F2E0B6 ;
+  text-decoration: none;               
+}
+
+.tricolor-bar { 
+    display: flex; 
+}
+.tricolor-bar span {
+    width: 8px; height: 32px; 
+}
+.az { 
+    background-color: #002395; 
+}    
+.bl { 
+    background-color: white; 
+}            
+.ro { 
+    background-color: #9B2335; 
+}  
+
+
+.logo-text p { 
+    font-size: 12px; 
+    text-transform: uppercase; 
+}
+.logo-title { 
+    font-size: 18px; 
+}
+
+.tabs { display: flex; gap: 25px; }
+
+
+.tab {
+  color: #F2E0B6 ;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent #9B2335; 
+}
+
+.tab:hover {
+  border-bottom: 2px solid ;
+}
+
+.btn-header {
+  background-color:  #9B2335;
+  color: #F2E0B6 ;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+body {
+  margin: 0;          
+}
+
+.hero {
+  position: relative;         
+  height: 80vh;                
+  min-height: 450px;
+  color: #F2E0B6;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           
+}
+.hero-overlay-h {             
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(26, 18, 8, 0.9), rgba(26, 18, 8, 0.2));
+}
+.hero-overlay-v {            
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient( rgba(26, 18, 8, 0.7), transparent 50%);
+}
+
+.hero-tricolor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+
+.hero-tricolor span {
+  flex: 1;                     
+  height: 6px;
+}
+
+.hero-contenido {
+  position: relative;          
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;        
+}
+
+.hero-text { max-width: 550px; }
+
