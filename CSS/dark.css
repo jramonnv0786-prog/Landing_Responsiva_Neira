@@ -1,13 +1,24 @@
-/*    --fondo:      #1A1208;   la tinta pasa a ser el fondo 
-      --text:    #F2E0B6;   el pergamino pasa a ser el texto 
-      --botones_etiquet:   #9B2335;   igual, para botones y etiquetas 
-      --enlaces:    #6C86E8;   azul aclarado para enlaces y eyebrows */
+/* ==========================================================
+   MODO OSCURO · Musée de la Révolution Française
+   Se carga después de style.css: solo sobrescribe colores.
+   ----------------------------------------------------------
+   Paleta
+     #1A1208  fondo      → la tinta pasa a ser el fondo
+     #F2E0B6  texto      → el pergamino pasa a ser el texto
+     #9B2335  botones    → igual, para botones y etiquetas
+     #6C86E8  enlaces    → azul aclarado para enlaces y eyebrows
+   ========================================================== */
 
 
-body { 
-background-color: #1A1208;  
-color:#F2E0B6;   
-  }
+/*Base */
+
+body {
+  background-color: #1A1208;
+  color: #F2E0B6;
+}
+
+
+/* Cabecera (invertida: tinta sobre pergamino) */
 
 header {
   background-color: #F2E0B6;
