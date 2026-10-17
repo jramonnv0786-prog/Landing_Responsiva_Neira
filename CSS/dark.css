@@ -1,16 +1,18 @@
 /* ==========================================================
    MODO OSCURO · Musée de la Révolution Française
    Se carga después de style.css: solo sobrescribe colores.
+   La maquetación (tamaños, posiciones, márgenes) está en style.css.
    ----------------------------------------------------------
    Paleta
      #1A1208  fondo      → la tinta pasa a ser el fondo
      #F2E0B6  texto      → el pergamino pasa a ser el texto
      #9B2335  botones    → igual, para botones y etiquetas
      #6C86E8  enlaces    → azul aclarado para enlaces y eyebrows
+     #2A1E10  superficie → marrón algo más claro para las tarjetas
    ========================================================== */
 
 
-/*Base */
+/* Base */
 
 body {
   background-color: #1A1208;
@@ -31,4 +33,21 @@ header {
 
 .tab {
   color: #1A1208;
+}
+
+
+/*  Sección de tarjetas  */
+
+.grid-head {
+  border-bottom-color: #F2E0B6;
+}
+
+.eyebrow {
+  color: #6C86E8;
+}
+
+.card {
+  background-color: #2A1E10;
+  color: #F2E0B6;
+  border-color: rgba(242, 224, 182, 0.25);
 }
