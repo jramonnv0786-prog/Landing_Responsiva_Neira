@@ -14,40 +14,44 @@
 
 /* Base */
 
-body {
+body:has(#modo-oscuro:checked) {
   background-color: #1A1208 ;
   color: #F2E0B6;
 }
 
-
-
-
-header {
+body:has(#modo-oscuro:checked) header {
   background-color: #1A1208;
   color:#F2E0B6 ;
 }
 
-.logo {
+body:has(#modo-oscuro:checked) .logo {
   color: #F2E0B6;
 }
 
-.tab {
+body:has(#modo-oscuro:checked) .tab {
   color: #F2E0B6;
 }
 
 
 /*  Sección de tarjetas  */
 
-.grid-head {
+body:has(#modo-oscuro:checked) .grid-head {
   border-bottom-color: #F2E0B6;
 }
 
-.eyebrow {
+body:has(#modo-oscuro:checked) .eyebrow {
   color: #6C86E8;
 }
 
-.card {
+body:has(#modo-oscuro:checked) .card {
   background-color: #2A1E10;
   color: #F2E0B6;
   border-color: rgba(242, 224, 182, 0.25);
+}
+
+
+/*  Botón de cambio de tema  */
+
+body:has(#modo-oscuro:checked) .btn-tema::after {
+  content: "Modo claro";
 }
