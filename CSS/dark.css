@@ -43,6 +43,10 @@ body:has(#modo-oscuro:checked) .card {
   border-color: rgba(242, 224, 182, 0.25);
 }
 
+body:has(#modo-oscuro:checked) .card-tag {
+  color: #F2E0B6;
+}
+
 
 /*  Botón de cambio de tema  */
 
