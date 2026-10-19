@@ -307,7 +307,14 @@ body {
   text-transform: uppercase;
   color: #002395;
 }
+.article {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
+.article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(26, 18, 8, 0.15);
+}
 /*Tarjetas de retrato (galería de protagonistas)*/
 /*Reutilizan .card y solo ajustan tamaños: foto cuadrada y texto más compacto*/
 .card-retrato .card-img {
