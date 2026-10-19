@@ -71,13 +71,6 @@ header {
   border-bottom: 2px solid ;
 }
 
-.btn-header {
-  background-color:  #9B2335;
-  color: #F2E0B6 ;
-  text-decoration: none;
-  padding: 10px 20px;
-}
-
 body {
   margin: 0;   
   background-color: #F2E0B6;     
@@ -527,7 +520,32 @@ footer {
   margin: 0;
 }
 
-/*modo oscuro*/
+/*Botón de cambio de tema (sin JS)*/
+/*El checkbox guarda el estado y queda invisible; el label es el botón que se ve*/
+.toggle-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-tema {
+  background-color: #9B2335;
+  color: #F2E0B6;
+  padding: 10px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-tema:hover {
+  background-color: #7E1C2B;
+}
+
+/*Contorno al llegar con Tab: + selecciona el label que va justo después del input*/
+.toggle-input:focus-visible + .btn-tema {
+  outline: 2px solid #6C86E8;
+  outline-offset: 2px;
+}
+
 .btn-tema::after {
-  content: "Modo oscuro";
+  content: "Cambiar a modo oscuro";
 }

@@ -98,5 +98,5 @@ body:has(#modo-oscuro:checked) .btn-cta {
 /*  Botón de cambio de tema  */
 
 body:has(#modo-oscuro:checked) .btn-tema::after {
-  content: "Modo claro";
+  content: "Cambiar a modo claro";
 }
