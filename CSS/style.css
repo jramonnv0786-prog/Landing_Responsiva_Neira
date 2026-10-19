@@ -204,7 +204,7 @@ body {
   transform: translateY(-4px);
   box-shadow: 6px 6px 0 var(--texto);
 }
-
+/*Contenedor de imagen de la tarjeta*/
 .card-img {                 
   position: relative;       
   overflow: hidden;         
