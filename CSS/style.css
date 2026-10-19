@@ -202,9 +202,10 @@ body {
   gap: 25px;
 }
 
-/*Fondo de las tarjetas de los tres grids: pergamino algo más claro que el fondo #F2E0B6*/
+/*Fondo de las tarjetas de todos los grids: pergamino algo más claro que el fondo #F2E0B6*/
 .card,
-.info {
+.info,
+.article {
   background-color: #F8EBCC;
 }
 
@@ -244,29 +245,17 @@ body {
   color: white;
 }
 /* ===== Artículos de la Declaración ===== */
-.article {
-  position: relative;
-  padding: 14px 16px 16px;
-  background: #F2E0B6;
-  border: 1px solid rgba(26, 18, 8, 0.15);
-  border-top: 3px solid #9B2335;
-  color: #1A1208;
-}
+/* La tarjeta (borde, franja burdeos, esquinas) la comparte con .info: ver "Pestaña Visitar" */
 
-/* Número romano (equivale al .card-tag) */
+/* Número romano: mismo estilo que los números 01/02/03 de Visitar */
 .article-num {
-  display: inline-block;
   margin-bottom: 8px;
-  padding: 2px 10px;
-  background: #9B2335;
-  color: #F2E0B6;
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 14px;
+  font-style: italic;
 }
 
 /* "Artículo 1" = eyebrow */
 .article h3 {
-  display: block;
   margin: 0 0 4px;
   font-size: 11px;
   font-weight: normal;
@@ -277,8 +266,8 @@ body {
 
 /* Título del artículo */
 .article h4 {
-  margin: 0 0 6px;
-  font-size: 18px;
+  margin: 0 0 10px;
+  font-size: 22px;
   font-weight: normal;
   line-height: 1.2;
 }
@@ -319,31 +308,6 @@ body {
   color: #002395;
 }
 
-/*  derechos del hombre y del ciudadano  */
-.section-head {
-  display: grid;
-  gap: 20px;
-  padding-bottom: 40px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid rgba(26, 18, 8, 0.15);
-}
-.section-head .eyebrow-line {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.section-title {
-  margin: 15px 0 0;
-  font-size: 56px;
-  font-weight: normal;
-  line-height: 1.05;
-}
-.section-desc {
-  max-width: 620px;
-  margin: 0 0 15px;
-  font-size: 18px;
-  line-height: 1.6;
-}
 /*Tarjetas de retrato (galería de protagonistas)*/
 /*Reutilizan .card y solo ajustan tamaños: foto cuadrada y texto más compacto*/
 .card-retrato .card-img {
@@ -413,8 +377,9 @@ body {
   background-color: #9B2335;
 }
 
-/*Acentos rojos de la cabecera y de Visitar (un solo color para todos)*/
+/*Acentos burdeos de cabeceras, Derechos y Visitar (un solo color para todos)*/
 .section-title em,
+.article-num,
 .info-num,
 .destacado,
 .info-link {
@@ -426,7 +391,9 @@ body {
 .visit-grid {
   margin-bottom: 40px;
 }
-.info {
+/*Tarjeta de texto: la comparten Visitar (.info) y Derechos (.article)*/
+.info,
+.article {
   display: flex;
   flex-direction: column;
   padding: 25px;

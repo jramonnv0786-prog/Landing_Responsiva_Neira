@@ -14,15 +14,18 @@ body:has(#modo-oscuro:checked) {
   color: #F2E0B6;
 }
 
-body:has(#modo-oscuro:checked) .eyebrow {
+body:has(#modo-oscuro:checked) .eyebrow,
+body:has(#modo-oscuro:checked) .article h3,
+body:has(#modo-oscuro:checked) .quote cite {
   color: #6C86E8;
 }
 
 
-/* Tarjetas de los tres grids (Grandes momentos, Protagonistas y Visitar) */
+/* Tarjetas de todos los grids */
 
 body:has(#modo-oscuro:checked) .card,
-body:has(#modo-oscuro:checked) .info {
+body:has(#modo-oscuro:checked) .info,
+body:has(#modo-oscuro:checked) .article {
   background-color: #2A1E10;
 }
 
@@ -48,9 +51,16 @@ body:has(#modo-oscuro:checked) .chip {
   border-color: rgba(242, 224, 182, 0.2);
 }
 
-body:has(#modo-oscuro:checked) .info {
+body:has(#modo-oscuro:checked) .info,
+body:has(#modo-oscuro:checked) .article {
   border-color: rgba(242, 224, 182, 0.12);
   border-top-color: #9B2335;   /* border-color también pinta el borde superior: se recupera el burdeos */
+}
+
+/* Cita final de Derechos */
+body:has(#modo-oscuro:checked) .quote {
+  border-left-color: #6C86E8;
+  background-color: rgba(242, 224, 182, 0.05);
 }
 
 body:has(#modo-oscuro:checked) .badge {
