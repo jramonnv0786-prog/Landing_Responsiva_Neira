@@ -1,55 +1,85 @@
-/* 
+/*
    MODO OSCURO · Musée de la Révolution Française
    Se carga después de style.css: solo sobrescribe colores.
    La maquetación (tamaños, posiciones, márgenes) está en style.css.
-   */
+   Cada regla lleva body:has(#modo-oscuro:checked): solo se aplica con el botón activado.
+   Lo que en style.css usa currentColor o inherit cambia solo y no necesita regla aquí.
+*/
 
 
 /* Base */
 
- /* Cada color que deba cambiar en modo oscuro necesita esta regla espejo*/ 
 body:has(#modo-oscuro:checked) {
-  background-color: #1A1208 ;
-  color: #F2E0B6;
-}
-
-body:has(#modo-oscuro:checked) header {
   background-color: #1A1208;
-  color:#F2E0B6 ;
-}
-
-body:has(#modo-oscuro:checked) .logo {
   color: #F2E0B6;
-}
-
-body:has(#modo-oscuro:checked) .tab {
-  color: #F2E0B6;
-}
-
-
-/*  Sección de tarjetas  */
-
-body:has(#modo-oscuro:checked) .grid-head {
-  border-bottom-color: #F2E0B6;
 }
 
 body:has(#modo-oscuro:checked) .eyebrow {
   color: #6C86E8;
 }
 
-body:has(#modo-oscuro:checked) .card {
+
+/* Tarjetas de los tres grids (Grandes momentos, Protagonistas y Visitar) */
+
+body:has(#modo-oscuro:checked) .card,
+body:has(#modo-oscuro:checked) .info {
   background-color: #2A1E10;
-  color: #F2E0B6;
+}
+
+body:has(#modo-oscuro:checked) .card {
   border-color: rgba(242, 224, 182, 0.25);
 }
 
+/* Fecha de las tarjetas: crema en vez del blanco de modo claro */
 body:has(#modo-oscuro:checked) .card-tag {
   color: #F2E0B6;
 }
 
 
-/*  Botón de cambio de tema  */
+/* Cabecera de sección (Protagonistas y Visitar) y pestaña Visitar */
+/* #E0647A: rojo aclarado, porque #9B2335 apenas se lee sobre fondo oscuro */
+
+body:has(#modo-oscuro:checked) .section-title em,
+body:has(#modo-oscuro:checked) .info-num,
+body:has(#modo-oscuro:checked) .destacado,
+body:has(#modo-oscuro:checked) .info-link {
+  color: #E0647A;
+}
+
+body:has(#modo-oscuro:checked) .section-head,
+body:has(#modo-oscuro:checked) .info-list li {
+  border-bottom-color: rgba(242, 224, 182, 0.12);
+}
+
+body:has(#modo-oscuro:checked) .chip {
+  border-color: rgba(242, 224, 182, 0.2);
+}
+
+body:has(#modo-oscuro:checked) .chip::before {
+  background-color: #E0647A;
+}
+
+body:has(#modo-oscuro:checked) .info {
+  border-color: rgba(242, 224, 182, 0.12);
+  border-top-color: #E0647A;
+}
+
+body:has(#modo-oscuro:checked) .badge {
+  border-color: #6C86E8;
+  color: #6C86E8;
+}
+
+body:has(#modo-oscuro:checked) .visit-cta {
+  background-color: #5C1424;
+}
+
+body:has(#modo-oscuro:checked) .btn-cta {
+  color: #5C1424;
+}
+
+
+/* Botón de cambio de tema */
 
 body:has(#modo-oscuro:checked) .btn-tema::after {
-  content: "Modo claro";
+  content: "Cambiar a modo claro";
 }

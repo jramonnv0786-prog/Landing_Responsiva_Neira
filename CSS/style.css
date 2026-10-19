@@ -64,18 +64,11 @@ header {
   color: #F2E0B6 ;
   text-decoration: none;
   padding-bottom: 4px;
-  border-bottom: 2px solid transparent #9B2335; 
+  border-bottom: 2px solid transparent;
 }
 
 .tab:hover {
-  border-bottom: 2px solid ;
-}
-
-.btn-header {
-  background-color:  #9B2335;
-  color: #F2E0B6 ;
-  text-decoration: none;
-  padding: 10px 20px;
+  border-bottom-color: currentColor;
 }
 
 body {
@@ -87,7 +80,7 @@ body {
 /*Hero*/
 .hero {
   position: relative;
-  height: 600px;; 
+  height: 600px;
   min-height: 450px;
   overflow: hidden;
   color: #F2E0B6;
@@ -201,7 +194,7 @@ body {
   align-items: flex-end;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 2px solid #1A1208;
+  border-bottom: 2px solid currentColor;   /*toma el color del texto: cambia solo en modo oscuro*/
 }
 .eyebrow {
   color: #002395;               
@@ -214,27 +207,30 @@ body {
     font-size: 14px;
 }
 
+/*Rejilla de 3 columnas: Grandes momentos, Protagonistas y Visitar*/
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
+}
+
+/*Fondo de las tarjetas de los tres grids: pergamino algo más claro que el fondo #F2E0B6*/
+.card,
+.info {
+  background-color: #F8EBCC;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  color: #1A1208;
+  color: inherit;   /*el texto toma el color del body, también en modo oscuro*/
   text-decoration: none;
   border: 1px solid #1A1208;
-  transition: transform .2s, box-shadow .2s;
-
+  transition: transform .2s;
 }
-
 
 .card:hover {
   transform: translateY(-4px);
- 
 }
 /*Contenedor de imagen de la tarjeta*/
 .card-img {                 
@@ -251,6 +247,8 @@ body {
 }
 .card:hover .card-img img { transform: scale(1.05); }
 
+/*Fecha sobre la imagen: se ancla a .card-img (position: relative)*/
+/*Blanco en modo claro; en modo oscuro lo cambia dark.css*/
 .card-tag {
   position: absolute;
   left: 12px;
@@ -259,6 +257,7 @@ body {
 }
 
 /*Tarjetas de retrato (galería de protagonistas)*/
+/*Reutilizan .card y solo ajustan tamaños: foto cuadrada y texto más compacto*/
 .card-retrato .card-img {
   aspect-ratio: 1 / 1;
 }
@@ -281,12 +280,184 @@ body {
   font-size: 13px;
   line-height: 1.5;
 }
+/*Cabecera de sección: título y, debajo, la descripción*/
+/*Compartida por Protagonistas y Visitar*/
+.section-head {
+  display: grid;
+  gap: 20px;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(26, 18, 8, 0.15);
+}
+.section-head .eyebrow-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title {
+  margin: 15px 0 0;
+  font-size: 56px;
+  font-weight: normal;
+  line-height: 1.05;
+}
+.section-desc {
+  max-width: 620px;
+  margin: 0 0 15px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/*Etiqueta redonda con un punto rojo delante*/
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid rgba(26, 18, 8, 0.2);
+  border-radius: 999px;
+  font-size: 13px;
+}
+.chip::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #9B2335;
+}
+
+/*Acentos rojos de la cabecera y de Visitar (un solo color para todos)*/
+.section-title em,
+.info-num,
+.destacado,
+.info-link {
+  color: #9B2335;
+}
+
+/*Pestaña Visitar*/
+/*Tres tarjetas de información: reutiliza .grid y solo añade el margen inferior*/
+.visit-grid {
+  margin-bottom: 40px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border: 1px solid rgba(26, 18, 8, 0.15);
+  border-top: 3px solid #9B2335;
+  border-radius: 8px;
+}
+.info h3 {
+  margin: 0 0 20px;
+  font-size: 26px;
+  font-weight: normal;
+}
+.info-num {
+  margin-right: 6px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/*Filas de las listas: texto a la izquierda, valor a la derecha*/
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px dashed rgba(26, 18, 8, 0.2);
+}
+.info-list li:last-child {
+  border-bottom: none;
+}
+.info-list em {
+  opacity: 0.7;
+}
+.badge {
+  padding: 3px 10px;
+  border: 1px solid #002395;
+  border-radius: 999px;
+  color: #002395;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/*Tarjeta "Cómo llegar"*/
+.info-dir {
+  margin: 0 0 15px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+.info-text {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+.info-link {
+  align-self: flex-start;
+  margin-top: auto;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/*Llamada a la acción: texto | botón (1fr auto)*/
+.visit-cta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
+  padding: 35px 45px;
+  background-color: #9B2335;
+  color: #F2E0B6;
+  border-radius: 8px;
+}
+.visit-cta h3 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: normal;
+}
+.visit-cta p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+.btn-cta {
+  padding: 12px 25px;
+  background-color: #F2E0B6;
+  color: #9B2335;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+}
+
+/*Móvil: todas las rejillas pasan a una sola columna*/
+@media (max-width: 768px) {
+  .grid,
+  .visit-cta {
+    grid-template-columns: 1fr;
+  }
+  .section-title {
+    font-size: 42px;
+  }
+  .visit-cta {
+    padding: 30px 25px;
+  }
+}
+
 /*Footer*/
 footer {
   background-color: #1A1208;
   color: #F2E0B6;
 }
 
+/*Franja tricolor superior del footer*/
 .footer-strip {
   display: flex;
 }
@@ -295,6 +466,7 @@ footer {
   height: 5px;
 }
 
+/*3 columnas: marca | lema | información (mismo patrón que .header-inner)*/
 .footer-main {
   max-width: 1200px;
   margin: 0 auto;
@@ -345,7 +517,32 @@ footer {
   margin: 0;
 }
 
-/*modo oscuro*/
+/*Botón de cambio de tema (sin JS)*/
+/*El checkbox guarda el estado y queda invisible; el label es el botón que se ve*/
+.toggle-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-tema {
+  background-color: #9B2335;
+  color: #F2E0B6;
+  padding: 10px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-tema:hover {
+  background-color: #7E1C2B;
+}
+
+/*Contorno al llegar con Tab: + selecciona el label que va justo después del input*/
+.toggle-input:focus-visible + .btn-tema {
+  outline: 2px solid #6C86E8;
+  outline-offset: 2px;
+}
+
 .btn-tema::after {
-  content: "Modo oscuro";
+  content: "Cambiar a modo oscuro";
 }
