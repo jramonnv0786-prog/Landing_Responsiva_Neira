@@ -188,26 +188,14 @@ body {
 
 }
 
-.grid-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid currentColor;   /*toma el color del texto: cambia solo en modo oscuro*/
-}
 .eyebrow {
-  color: #002395;               
+  color: #002395;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 13px;
 }
 
-.meta {
-    font-size: 14px;
-}
-
-/*Rejilla de 3 columnas: Grandes momentos, Protagonistas y Visitar*/
+/*Rejilla de 3 columnas: la usan todos los apartados*/
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -281,7 +269,7 @@ body {
   line-height: 1.5;
 }
 /*Cabecera de sección: título y, debajo, la descripción*/
-/*Compartida por Protagonistas y Visitar*/
+/*Compartida por todos los apartados*/
 .section-head {
   display: grid;
   gap: 20px;

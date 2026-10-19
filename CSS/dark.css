@@ -36,15 +36,8 @@ body:has(#modo-oscuro:checked) .card-tag {
 }
 
 
-/* Cabecera de sección (Protagonistas y Visitar) y pestaña Visitar */
-/* #E0647A: rojo aclarado, porque #9B2335 apenas se lee sobre fondo oscuro */
-
-body:has(#modo-oscuro:checked) .section-title em,
-body:has(#modo-oscuro:checked) .info-num,
-body:has(#modo-oscuro:checked) .destacado,
-body:has(#modo-oscuro:checked) .info-link {
-  color: #E0647A;
-}
+/* Cabeceras de sección y pestaña Visitar */
+/* Los acentos burdeos (#9B2335) son los mismos en los dos modos: no necesitan regla aquí */
 
 body:has(#modo-oscuro:checked) .section-head,
 body:has(#modo-oscuro:checked) .info-list li {
@@ -55,13 +48,9 @@ body:has(#modo-oscuro:checked) .chip {
   border-color: rgba(242, 224, 182, 0.2);
 }
 
-body:has(#modo-oscuro:checked) .chip::before {
-  background-color: #E0647A;
-}
-
 body:has(#modo-oscuro:checked) .info {
   border-color: rgba(242, 224, 182, 0.12);
-  border-top-color: #E0647A;
+  border-top-color: #9B2335;   /* border-color también pinta el borde superior: se recupera el burdeos */
 }
 
 body:has(#modo-oscuro:checked) .badge {
