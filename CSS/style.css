@@ -493,16 +493,19 @@ body {
 /*Botón píldora pergamino: lo comparten "Ver la exposición" y el botón de tema*/
 .btn-cta,
 .btn-tema {
+  display: inline-block;   /*transform no funciona en elementos en línea (a, label)*/
   padding: 12px 25px;
   background-color: #F2E0B6;
   color: #9B2335;
   text-decoration: none;
   font-weight: bold;
   border-radius: 999px;
+  transition: transform .2s;
 }
+/*Hover flotante, igual que las tarjetas de los grids*/
 .btn-cta:hover,
 .btn-tema:hover {
-  background-color: #FBF3E0;
+  transform: translateY(-4px);
 }
 
 /*Footer*/
