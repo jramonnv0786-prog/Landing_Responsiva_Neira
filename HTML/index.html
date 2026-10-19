@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="/CSS/dark.css">
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- Cabecera: logo, pestañas y botón de tema -->
   <header>
     <div class="header-inner">
-      <a href="#exposicion" class="logo" data-tab="exposicion">
+      <a href="#exposicion" class="logo">
         <div class="tricolor-bar">
           <span class="az"></span>
           <span class="bl"></span>
@@ -24,12 +24,14 @@
       </a>
 
       <nav class="tabs" role="tablist" aria-label="Secciones del museo">
-        <a class="tab" role="tab" href="#exposicion"    id="tab-exposicion"    data-tab="exposicion"    aria-controls="exposicion"    aria-selected="true">Exposición</a>
-        <a class="tab" role="tab" href="#derechos"      id="tab-derechos"      data-tab="derechos"      aria-controls="derechos"      aria-selected="false">Derechos</a>
-        <a class="tab" role="tab" href="#protagonistas" id="tab-protagonistas" data-tab="protagonistas" aria-controls="protagonistas" aria-selected="false">Protagonistas</a>
-        <a class="tab" role="tab" href="#visitar"       id="tab-visitar"       data-tab="visitar"       aria-controls="visitar"       aria-selected="false">Visitar</a>
+        <a class="tab" role="tab" href="#exposicion" id="tab-exposicion" aria-controls="exposicion" aria-selected="true">Exposición</a>
+        <a class="tab" role="tab" href="#derechos" id="tab-derechos" aria-controls="derechos" aria-selected="false">Derechos</a>
+        <a class="tab" role="tab" href="#protagonistas" id="tab-protagonistas" aria-controls="protagonistas" aria-selected="false">Protagonistas</a>
+        <a class="tab" role="tab" href="#visitar" id="tab-visitar" aria-controls="visitar" aria-selected="false">Visitar</a>
       </nav>
 
+      <!-- El botón de tema funciona sin JavaScript: el checkbox está escondido y recuerda si está activado,
+           y lo que se ve y se pulsa es el label. dark.css se fija en ese checkbox para cambiar los colores -->
       <div class="header-acciones">
         <input type="checkbox" id="modo-oscuro" class="toggle-input" aria-label="Modo oscuro">
         <label for="modo-oscuro" class="btn-tema"></label>
@@ -39,8 +41,8 @@
 
   <main>
 
-    <!-- PESTAÑA 1 · EXPOSICIÓN -->
-    <section class="panel" id="exposicion" role="tabpanel" aria-labelledby="tab-exposicion">
+    <!-- 1 · Exposición: el hero y los grandes momentos -->
+    <section id="exposicion" role="tabpanel" aria-labelledby="tab-exposicion">
 
       <div class="hero">
         <img class="hero-img"
@@ -48,15 +50,16 @@
           alt="La Liberté guidant le peuple — Delacroix, 1830. Louvre, París" />
         <div class="hero-overlay-h"></div>
         <div class="hero-overlay-v"></div>
-        <!-- Franja tricolor que separa el hero de las tarjetas -->
+        <!-- La franja tricolor que separa el hero del resto -->
         <div class="hero-tricolor"><span class="az"></span><span class="bl"></span><span class="ro"></span></div>
         <div class="hero-contenido">
           <div class="hero-text">
             <div class="eyebrow-line">
               <div class="rule"></div>
-              <span >1789 — 1799</span>
+              <span>1789 — 1799</span>
             </div>
-            <h2 class="hero-title"><a style="color: white;">La Revolución</a><br><em><a style="color: white;"></a>Francesa</em></h2>
+            <!-- El estilo en línea que pide el enunciado: gana a style.css y deja "La Revolución" en blanco -->
+            <h2 class="hero-title"><span style="color: white;">La Revolución</span><br><em>Francesa</em></h2>
             <p class="hero-desc">
               Diez años que sacudieron el Ancien Régime y transformaron para siempre la concepción de la libertad y los derechos del hombre.
             </p>
@@ -67,6 +70,8 @@
 
       <div class="grid-section" id="cards">
         <div class="container">
+
+          <!-- Título del apartado -->
           <div class="section-head">
             <div>
               <div class="eyebrow-line"><div class="rule"></div><span class="eyebrow">Exposición permanente</span></div>
@@ -77,13 +82,13 @@
             </div>
           </div>
 
+          <!-- Tarjetas con foto. Las fechas llevan el color en línea, así que siguen blancas en modo oscuro -->
           <div class="grid">
 
             <a class="card" href="#">
               <div class="card-img">
                 <img src="/Image/GrandesMomentos.jpg" alt="Toma de la Bastilla" />
-                <div class="card-fade"></div>
-                <div class="card-tag"><span  style="color: white;">14 Juillet 1789</span></div>
+                <div class="card-tag"><span style="color: white;">14 Juillet 1789</span></div>
               </div>
               <div class="card-body">
                 <h3>La Toma de la Bastilla</h3>
@@ -91,11 +96,10 @@
               </div>
             </a>
 
-            <a class="card" href="#derechos" data-tab="derechos">
+            <a class="card" href="#derechos">
               <div class="card-img">
                 <img src="/Image/DerechosdelHombre.jpg" alt="Declaración de Derechos del Hombre" />
-                <div class="card-fade"></div>
-                <div class="card-tag"><span  style="color: white;">26 Août 1789</span></div>
+                <div class="card-tag"><span style="color: white;">26 Août 1789</span></div>
               </div>
               <div class="card-body">
                 <h3>Declaración de Derechos del Hombre</h3>
@@ -106,8 +110,7 @@
             <a class="card" href="#">
               <div class="card-img">
                 <img src="/Image/Ejecución.jpg" alt="Ejecución de Luis XVI" />
-                <div class="card-fade"></div>
-                <div class="card-tag"><span  style="color: white;">21 Janvier 1793</span></div>
+                <div class="card-tag"><span style="color: white;">21 Janvier 1793</span></div>
               </div>
               <div class="card-body">
                 <h3>Ejecución de Luis XVI</h3>
@@ -118,8 +121,7 @@
             <a class="card" href="#">
               <div class="card-img">
                 <img src="/Image/reino.jpg" alt="El Reinado del Terror" />
-                <div class="card-fade"></div>
-                <div class="card-tag"><span  style="color: white;">Sept. 1793 — Jul. 1794</span></div>
+                <div class="card-tag"><span style="color: white;">Sept. 1793 — Jul. 1794</span></div>
               </div>
               <div class="card-body">
                 <h3>El Reinado del Terror</h3>
@@ -127,11 +129,10 @@
               </div>
             </a>
 
-            <a class="card" href="#protagonistas" data-tab="protagonistas">
+            <a class="card" href="#protagonistas">
               <div class="card-img">
                 <img src="/Image/CaídaRobespierre.JPG" alt="Caída de Robespierre" />
-                <div class="card-fade"></div>
-                <div class="card-tag"><span  style="color: white;">9 Thermidor 1794</span></div>
+                <div class="card-tag"><span style="color: white;">9 Thermidor 1794</span></div>
               </div>
               <div class="card-body">
                 <h3>Caída de Robespierre</h3>
@@ -142,8 +143,7 @@
             <a class="card" href="#">
               <div class="card-img">
                 <img src="/Image/GolpeDeNapoleon.jpg" alt="El Golpe de Napoleón" />
-                <div class="card-fade"></div>
-                <div class="card-tag"><span  style="color: white;">18 Brumaire 1799</span></div>
+                <div class="card-tag"><span style="color: white;">18 Brumaire 1799</span></div>
               </div>
               <div class="card-body">
                 <h3>El Golpe de Napoleón</h3>
@@ -157,11 +157,12 @@
     </section>
 
 
-    <!-- PESTAÑA 2 · DERECHOS -->
-    <section class="panel" id="derechos" role="tabpanel" aria-labelledby="tab-derechos">
+    <!-- 2 · Derechos del Hombre y del Ciudadano -->
+    <section id="derechos" role="tabpanel" aria-labelledby="tab-derechos">
       <div class="grid-section">
         <div class="container">
 
+          <!-- Título del apartado -->
           <div class="section-head">
             <div>
               <div class="eyebrow-line"><div class="rule"></div><span class="eyebrow">26 Août 1789</span></div>
@@ -173,6 +174,7 @@
             </div>
           </div>
 
+          <!-- Un artículo por tarjeta, con el mismo diseño que las de Visitar -->
           <div class="grid">
             <article class="article">
               <span class="article-num">I</span>
@@ -217,6 +219,7 @@
             </article>
           </div>
 
+          <!-- La cita del artículo 6 para cerrar -->
           <div class="quote">
             <span class="quote-mark">“</span>
             <div>
@@ -229,12 +232,12 @@
     </section>
 
 
-    <!-- PESTAÑA 3 · PROTAGONISTAS -->
-    <section class="panel" id="protagonistas" role="tabpanel" aria-labelledby="tab-protagonistas">
+    <!-- 3 · Protagonistas -->
+    <section id="protagonistas" role="tabpanel" aria-labelledby="tab-protagonistas">
       <div class="grid-section">
         <div class="container">
 
-          <!-- Cabecera: título | descripción (mismo diseño que "Planifica tu visita") -->
+          <!-- Título del apartado -->
           <div class="section-head">
             <div>
               <div class="eyebrow-line"><div class="rule"></div><span class="eyebrow">Hommes et femmes</span></div>
@@ -246,8 +249,8 @@
             </div>
           </div>
 
+          <!-- Los retratos usan la misma tarjeta que los grandes momentos, más la clase card-retrato -->
           <div class="grid">
-            <!-- Tarjetas de protagonistas: misma estructura que "Grandes momentos" + clase card-retrato -->
             <article class="card card-retrato">
               <div class="card-img">
                 <img src="/Image/LuisXVI.jpg" alt="Retrato de Luis XVI" />
@@ -325,12 +328,12 @@
     </section>
 
 
-    <!-- PESTAÑA 4 · VISITAR -->
-    <section class="panel" id="visitar" role="tabpanel" aria-labelledby="tab-visitar">
+    <!-- 4 · Planifica tu visita -->
+    <section id="visitar" role="tabpanel" aria-labelledby="tab-visitar">
       <div class="grid-section">
         <div class="container">
 
-          <!-- GRID 1 · Cabecera: título | descripción -->
+          <!-- Título del apartado -->
           <div class="section-head">
             <div>
               <div class="eyebrow-line"><div class="rule"></div><span class="eyebrow">Informations pratiques</span></div>
@@ -342,7 +345,7 @@
             </div>
           </div>
 
-          <!-- GRID 2 · Tres tarjetas de información -->
+          <!-- Horario, cómo llegar y servicios -->
           <div class="grid visit-grid">
             <article class="info">
               <h3><span class="info-num">01</span> Horario</h3>
@@ -372,13 +375,13 @@
             </article>
           </div>
 
-          <!-- GRID 3 · Llamada a la acción: texto | botón -->
+          <!-- El bloque burdeos de Liberté con el botón para volver a la exposición -->
           <div class="visit-cta">
             <div>
               <h3>Liberté · Égalité · Fraternité</h3>
               <p>Consulta la web oficial para exposiciones temporales y reservas.</p>
             </div>
-            <a href="#exposicion" class="btn-cta" data-tab="exposicion">Ver la exposición →</a>
+            <a href="#exposicion" class="btn-cta">Ver la exposición →</a>
           </div>
 
         </div>
@@ -387,7 +390,7 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- Pie de página -->
   <footer>
     <div class="footer-strip">
       <span class="az"></span><span class="bl"></span><span class="ro"></span>
@@ -402,14 +405,13 @@
       <div class="footer-info">
         <p>Martes a Domingo · 10:00 — 18:00</p>
         <p>Entrada libre los domingos</p>
-        <p class="site">musee-revolution-francaise.fr</p>
+        <p>musee-revolution-francaise.fr</p>
       </div>
     </div>
     <div class="footer-copy">
       <p>© 2026 Musée de la Révolution Française — Conseil départemental de l'Isère</p>
     </div>
   </footer>
-
 
 </body>
 </html>
