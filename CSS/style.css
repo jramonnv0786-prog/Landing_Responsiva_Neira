@@ -490,13 +490,19 @@ body {
   font-size: 14px;
   opacity: 0.85;
 }
-.btn-cta {
+/*Botón píldora pergamino: lo comparten "Ver la exposición" y el botón de tema*/
+.btn-cta,
+.btn-tema {
   padding: 12px 25px;
   background-color: #F2E0B6;
   color: #9B2335;
   text-decoration: none;
   font-weight: bold;
   border-radius: 999px;
+}
+.btn-cta:hover,
+.btn-tema:hover {
+  background-color: #FBF3E0;
 }
 
 /*Footer*/
@@ -573,16 +579,10 @@ footer {
   pointer-events: none;
 }
 
+/*El aspecto lo comparte con .btn-cta (ver "Llamada a la acción")*/
 .btn-tema {
-  background-color: #9B2335;
-  color: #F2E0B6;
-  padding: 10px 20px;
   cursor: pointer;
   user-select: none;
-}
-
-.btn-tema:hover {
-  background-color: #7E1C2B;
 }
 
 /*Contorno al llegar con Tab: + selecciona el label que va justo después del input*/
