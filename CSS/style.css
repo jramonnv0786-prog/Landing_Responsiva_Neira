@@ -4,6 +4,8 @@
   --botones_etiquetas_nArt:     #9B2335;   botones, etiquetas y números de artículo 
   --enlaces:   #002395;   eyebrows, enlaces y franja azul de la tricolor */
 
+
+  /*header*/
 header {
   background-color: #1A1208;
   color: #F2E0B6;
@@ -82,6 +84,7 @@ body {
   color: #1A1208;        
 }
 
+/*Hero*/
 .hero {
   position: relative;
   height: 600px;; 
@@ -150,8 +153,10 @@ body {
   text-decoration: none;
   padding: 12px 25px;
 }
-
-.grid-section { padding: 50px 0; }
+/*Grid de tarjetas*/
+.grid-section { 
+  padding: 50px 0; 
+}
 
 .container {
   max-width: 1200px;
@@ -236,6 +241,8 @@ body {
   font-size: 14px;
   line-height: 1.6;
 }
+
+/*modo oscuro*/
 .btn-tema::after {
   content: "Modo oscuro";
 }
