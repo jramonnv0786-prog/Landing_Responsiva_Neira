@@ -49,14 +49,14 @@ body:has(#modo-oscuro:checked) .card-tag {
 }
 
 
-/*  Pestaña Visitar  */
+/*  Cabecera de sección (Protagonistas y Visitar) y pestaña Visitar  */
 /*  #E0647A: rojo aclarado, porque #9B2335 apenas se lee sobre fondo oscuro  */
 
-body:has(#modo-oscuro:checked) .visit-head {
+body:has(#modo-oscuro:checked) .section-head {
   border-bottom-color: rgba(242, 224, 182, 0.12);
 }
 
-body:has(#modo-oscuro:checked) .visit-title em,
+body:has(#modo-oscuro:checked) .section-title em,
 body:has(#modo-oscuro:checked) .info-num,
 body:has(#modo-oscuro:checked) .destacado,
 body:has(#modo-oscuro:checked) .info-link {

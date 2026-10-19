@@ -279,8 +279,9 @@ body {
 }
 /*Pestaña Visitar*/
 
-/*GRID 1 · Cabecera: título | descripción (2 columnas iguales)*/
-.visit-head {
+/*GRID 1 · Cabecera de sección: título | descripción (2 columnas iguales)*/
+/*Compartida por Protagonistas y Visitar*/
+.section-head {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -289,21 +290,21 @@ body {
   margin-bottom: 40px;
   border-bottom: 1px solid rgba(26, 18, 8, 0.15);
 }
-.visit-head .eyebrow-line {
+.section-head .eyebrow-line {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.visit-title {
+.section-title {
   margin: 15px 0 0;
   font-size: 56px;
   font-weight: normal;
   line-height: 1.05;
 }
-.visit-title em {
+.section-title em {
   color: #9B2335;
 }
-.visit-desc {
+.section-desc {
   margin: 0 0 15px;
   font-size: 18px;
   line-height: 1.6;
@@ -441,12 +442,12 @@ body {
 
 /*Móvil: las tres rejillas pasan a una sola columna*/
 @media (max-width: 768px) {
-  .visit-head,
+  .section-head,
   .visit-grid,
   .visit-cta {
     grid-template-columns: 1fr;
   }
-  .visit-title {
+  .section-title {
     font-size: 42px;
   }
   .visit-cta {
