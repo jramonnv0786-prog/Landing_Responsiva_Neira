@@ -1,8 +1,22 @@
-/*
-  --Fondogeneral: #F2E0B6;   fondo general, tono de papel antiguo 
-  --TexCabPie:       #1A1208;   texto, cabecera y pie de página 
-  --botones_etiquetas_nArt:     #9B2335;   botones, etiquetas y números de artículo 
-  --enlaces:   #002395;   eyebrows, enlaces y franja azul de la tricolor */
+/* =========================================================
+   Musée de la Révolution Française · estilos principales
+
+   Aquí está todo el diseño de la landing en modo claro.
+   Después se carga dark.css, que solo cambia los colores
+   cuando se pulsa el botón "Cambiar a modo oscuro".
+
+   Más o menos en el orden de la página: cabecera, bandera, hero,
+   tarjetas, Derechos, Protagonistas, cabeceras de apartado, Visitar,
+   botones, pie, botón de tema y, al final, el responsive.
+
+   Colores
+     #F2E0B6  pergamino: fondo de la página y texto sobre fondo oscuro
+     #F8EBCC  pergamino un poco más claro: fondo de las tarjetas
+     #1A1208  tinta: texto, cabecera y pie
+     #9B2335  burdeos: botones, números, detalles y franja de las tarjetas
+     #002395  azul: eyebrows, etiquetas y franja azul de la bandera
+     #6C86E8  azul claro: el borde del botón de tema al llegar con el tabulador
+   ========================================================= */
 
 
   /*header*/
