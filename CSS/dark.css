@@ -1,84 +1,132 @@
-/*
-   MODO OSCURO · Musée de la Révolution Française
-   Se carga después de style.css: solo sobrescribe colores.
-   La maquetación (tamaños, posiciones, márgenes) está en style.css.
-   Cada regla lleva body:has(#modo-oscuro:checked): solo se aplica con el botón activado.
-   Lo que en style.css usa currentColor o inherit cambia solo y no necesita regla aquí.
-*/
+/* =========================================================
+   Musée de la Révolution Française · modo oscuro
+
+   Se carga después de style.css y solo cambia colores:
+   tamaños, posiciones y márgenes siguen saliendo de style.css.
+
+   Todas las reglas empiezan por body:has(#modo-oscuro:checked), que quiere
+   decir "el body que tiene dentro el checkbox del botón de tema marcado".
+   Así el modo oscuro se enciende y se apaga con el botón, sin JavaScript.
+
+   Va en el mismo orden que la página: de la cabecera al pie.
+
+   Colores del modo oscuro
+     #1A1208  fondo de la página (la tinta pasa a ser el fondo)
+     #F2E0B6  texto (y el pergamino, el texto)
+     #2A1E10  fondo de las tarjetas
+     #6C86E8  azul más claro, porque el de siempre casi no se lee sobre oscuro
+     #5C1424  granate del bloque Liberté
+   ========================================================= */
 
 
-/* Base */
+/* ---------- Base ---------- */
 
 body:has(#modo-oscuro:checked) {
   background-color: #1A1208;
   color: #F2E0B6;
 }
 
-body:has(#modo-oscuro:checked) .eyebrow,
-body:has(#modo-oscuro:checked) .article h3,
-body:has(#modo-oscuro:checked) .quote cite {
-  color: #6C86E8;
+
+/* ---------- Cabecera ---------- */
+/* Ya es oscura en modo claro, así que solo cambia el texto del botón */
+
+body:has(#modo-oscuro:checked) .btn-tema::after {
+  content: "Cambiar a modo claro";
 }
 
 
-/* Tarjetas de todos los grids */
-
-body:has(#modo-oscuro:checked) .card,
-body:has(#modo-oscuro:checked) .info,
-body:has(#modo-oscuro:checked) .article {
-  background-color: #2A1E10;
-}
-
-body:has(#modo-oscuro:checked) .card {
-  border-color: rgba(242, 224, 182, 0.25);
-}
-
-/* Fecha de las tarjetas: crema en vez del blanco de modo claro */
-body:has(#modo-oscuro:checked) .card-tag {
-  color: #F2E0B6;
-}
+/* ---------- Hero ---------- */
+/* No cambia: el texto va sobre una foto oscura en los dos modos */
 
 
-/* Cabeceras de sección y pestaña Visitar */
-/* Los acentos burdeos (#9B2335) son los mismos en los dos modos: no necesitan regla aquí */
+/* ---------- Lo que comparten todos los apartados ---------- */
 
-body:has(#modo-oscuro:checked) .section-head,
-body:has(#modo-oscuro:checked) .info-list li {
+/* La línea fina bajo el título de cada apartado */
+body:has(#modo-oscuro:checked) .section-head {
   border-bottom-color: rgba(242, 224, 182, 0.12);
+}
+
+/* Los eyebrows, en azul claro */
+body:has(#modo-oscuro:checked) .eyebrow {
+  color: #6C86E8;
 }
 
 body:has(#modo-oscuro:checked) .chip {
   border-color: rgba(242, 224, 182, 0.2);
 }
 
+/* Todas las tarjetas llevan el mismo fondo marrón */
+body:has(#modo-oscuro:checked) .card,
 body:has(#modo-oscuro:checked) .info,
 body:has(#modo-oscuro:checked) .article {
-  border-color: rgba(242, 224, 182, 0.12);
-  border-top-color: #9B2335;   /* border-color también pinta el borde superior: se recupera el burdeos */
+  background-color: #2A1E10;
 }
 
-/* Cita final de Derechos */
+/* Los detalles en burdeos (#9B2335) se ven igual en los dos modos: no necesitan regla */
+
+
+/* ---------- Exposición: tarjetas con foto ---------- */
+/* Protagonistas usa estas mismas tarjetas */
+
+body:has(#modo-oscuro:checked) .card {
+  border-color: rgba(242, 224, 182, 0.25);
+}
+
+/* La fecha encima de la foto, en pergamino en vez de blanco */
+body:has(#modo-oscuro:checked) .card-tag {
+  color: #F2E0B6;
+}
+
+
+/* ---------- Derechos ---------- */
+
+/* border-color también pinta el borde de arriba, así que se vuelve a poner la franja burdeos */
+body:has(#modo-oscuro:checked) .article {
+  border-color: rgba(242, 224, 182, 0.12);
+  border-top-color: #9B2335;
+}
+
+/* "Artículo 1" y la firma de la cita, en azul claro como los eyebrows */
+body:has(#modo-oscuro:checked) .article h3,
+body:has(#modo-oscuro:checked) .quote cite {
+  color: #6C86E8;
+}
+
+/* La cita del final */
 body:has(#modo-oscuro:checked) .quote {
   border-left-color: #6C86E8;
   background-color: rgba(242, 224, 182, 0.05);
 }
 
+
+/* ---------- Protagonistas ---------- */
+/* Usa las tarjetas de Exposición: no necesita nada más */
+
+
+/* ---------- Visitar ---------- */
+
+/* Igual que en Derechos: se recupera la franja burdeos de arriba */
+body:has(#modo-oscuro:checked) .info {
+  border-color: rgba(242, 224, 182, 0.12);
+  border-top-color: #9B2335;
+}
+
+/* Los separadores de las listas de horario y servicios */
+body:has(#modo-oscuro:checked) .info-list li {
+  border-bottom-color: rgba(242, 224, 182, 0.12);
+}
+
+/* Las etiquetas azules (Grupos, PMR...) */
 body:has(#modo-oscuro:checked) .badge {
   border-color: #6C86E8;
   color: #6C86E8;
 }
 
+/* El bloque Liberté, más oscuro, y el texto del botón a juego */
 body:has(#modo-oscuro:checked) .visit-cta {
   background-color: #5C1424;
 }
 
 body:has(#modo-oscuro:checked) .btn-cta {
   color: #5C1424;
-}
-
-
-/* Botón de cambio de tema */
-
-body:has(#modo-oscuro:checked) .btn-tema::after {
-  content: "Cambiar a modo claro";
 }
