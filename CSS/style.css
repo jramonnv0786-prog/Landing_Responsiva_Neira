@@ -280,13 +280,11 @@ body {
   font-size: 13px;
   line-height: 1.5;
 }
-/*Cabecera de sección: título | descripción (2 columnas iguales)*/
+/*Cabecera de sección: título y, debajo, la descripción*/
 /*Compartida por Protagonistas y Visitar*/
 .section-head {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: end;
+  gap: 20px;
   padding-bottom: 40px;
   margin-bottom: 40px;
   border-bottom: 1px solid rgba(26, 18, 8, 0.15);
@@ -303,6 +301,7 @@ body {
   line-height: 1.05;
 }
 .section-desc {
+  max-width: 620px;
   margin: 0 0 15px;
   font-size: 18px;
   line-height: 1.6;
@@ -440,7 +439,6 @@ body {
 
 /*Móvil: todas las rejillas pasan a una sola columna*/
 @media (max-width: 768px) {
-  .section-head,
   .grid,
   .visit-cta {
     grid-template-columns: 1fr;
