@@ -242,6 +242,70 @@ body {
   left: 12px;
   bottom: 12px;
 }
+/*Footer*/
+footer {
+  background-color: #1A1208;
+  color: #F2E0B6;
+}
+
+.footer-strip {
+  display: flex;
+}
+.footer-strip span {
+  flex: 1;
+  height: 5px;
+}
+
+.footer-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 45px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-brand p {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.footer-brand h3 {
+  margin: 6px 0 10px;
+  font-size: 22px;
+}
+.footer-brand .addr {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.footer-motto {
+  margin: 0;
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.footer-info {
+  text-align: right;
+  font-size: 13px;
+}
+.footer-info p {
+  margin: 0 0 6px;
+}
+
+.footer-copy {
+  border-top: 1px solid rgba(242, 224, 182, 0.15);
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 12px;
+}
+.footer-copy p {
+  margin: 0;
+}
+
 /*modo oscuro*/
 .btn-tema::after {
   content: "Modo oscuro";
