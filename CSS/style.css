@@ -31,13 +31,14 @@ header {
   color: #F2E0B6 ;
   text-decoration: none;               
 }
-
+/*Bandera Francesa */
 .tricolor-bar { 
     display: flex; 
 }
 .tricolor-bar span {
     width: 8px; height: 32px; 
 }
+
 .az { 
     background-color: #002395; 
 }    
@@ -47,7 +48,7 @@ header {
 .ro { 
     background-color: #9B2335; 
 }  
-
+/*Bandera Francesa */
 
 .logo-text p { 
     font-size: 12px; 
