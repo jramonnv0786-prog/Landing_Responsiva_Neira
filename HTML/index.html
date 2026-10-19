@@ -337,62 +337,60 @@
 
     <!-- PESTAÑA 4 · VISITAR -->
     <section class="panel" id="visitar" role="tabpanel" aria-labelledby="tab-visitar">
-
-      <div class="page-head" data-watermark="Vizille">
-        <div class="hero-tricolor"><span class="bl"></span><span class="wh"></span><span class="rd"></span></div>
-        <div class="container">
-          <div class="eyebrow-line"><div class="rule"></div><span>Informations pratiques</span></div>
-          <h2>Planifica<br><em>tu visita</em></h2>
-          <p>El museo se encuentra en el Domaine de Vizille, en Isère, rodeado de un parque histórico junto a los Alpes franceses.</p>
-        </div>
-      </div>
-
       <div class="grid-section">
         <div class="container">
-          <div class="grid-head">
+
+          <!-- GRID 1 · Cabecera: título | descripción -->
+          <div class="visit-head">
             <div>
-              <span class="eyebrow">Información práctica</span>
-              <h2>Antes de venir</h2>
+              <div class="eyebrow-line"><div class="rule"></div><span class="eyebrow">Informations pratiques</span></div>
+              <h2 class="visit-title">Planifica<br><em>tu visita</em></h2>
             </div>
-            <p class="meta">Domaine de Vizille · Isère</p>
+            <div>
+              <p class="visit-desc">El museo se encuentra en el Domaine de Vizille, en Isère, rodeado de un parque histórico junto a los Alpes franceses.</p>
+              <span class="chip">Domaine de Vizille · Isère</span>
+            </div>
           </div>
 
-          <div class="grid visit-grid">
-            <div class="info">
-              <h3>Horario</h3>
-              <ul>
-                <li class="closed"><span>Lunes</span><strong>Cerrado</strong></li>
+          <!-- GRID 2 · Tres tarjetas de información -->
+          <div class="visit-grid">
+            <article class="info">
+              <h3><span class="info-num">01</span> Horario</h3>
+              <ul class="info-list">
+                <li><span>Lunes</span><em>Cerrado</em></li>
                 <li><span>Martes – Sábado</span><strong>10:00 – 18:00</strong></li>
                 <li><span>Domingo</span><strong>10:00 – 18:00</strong></li>
-                <li><span>Entrada domingos</span><strong>Libre</strong></li>
+                <li><span>Entrada domingos</span><strong class="destacado">Libre</strong></li>
               </ul>
-            </div>
+            </article>
 
-            <div class="info">
-              <h3>Cómo llegar</h3>
-              <p><strong>Dirección:</strong> Domaine de Vizille, 38220 Isère — Francia.</p>
-              <p>A unos 20 km al sur de Grenoble. Acceso en coche y en autobús desde la estación de Grenoble.</p>
-            </div>
+            <article class="info">
+              <h3><span class="info-num">02</span> Cómo llegar</h3>
+              <p class="info-dir">Domaine de Vizille<br>38220 Isère — Francia</p>
+              <p class="info-text">A unos 20 km al sur de Grenoble. Acceso en coche y en autobús desde la estación de Grenoble.</p>
+              <a class="info-link" href="https://www.google.com/maps/search/Domaine+de+Vizille" target="_blank" rel="noopener">Ver en el mapa →</a>
+            </article>
 
-            <div class="info">
-              <h3>Servicios</h3>
-              <ul>
-                <li><span>Visitas guiadas</span><strong>Grupos</strong></li>
-                <li><span>Talleres escolares</span><strong>Con reserva</strong></li>
-                <li><span>Accesibilidad</span><strong>PMR</strong></li>
-                <li><span>Parque del castillo</span><strong>Incluido</strong></li>
+            <article class="info">
+              <h3><span class="info-num">03</span> Servicios</h3>
+              <ul class="info-list">
+                <li><span>Visitas guiadas</span><span class="badge">Grupos</span></li>
+                <li><span>Talleres escolares</span><span class="badge">Con reserva</span></li>
+                <li><span>Accesibilidad</span><span class="badge">PMR</span></li>
+                <li><span>Parque del castillo</span><span class="badge">Incluido</span></li>
               </ul>
-            </div>
+            </article>
           </div>
 
+          <!-- GRID 3 · Llamada a la acción: texto | botón -->
           <div class="visit-cta">
-            <div class="hero-tricolor"><span class="bl"></span><span class="wh"></span><span class="rd"></span></div>
             <div>
               <h3>Liberté · Égalité · Fraternité</h3>
               <p>Consulta la web oficial para exposiciones temporales y reservas.</p>
             </div>
-            <a href="#exposicion" class="btn-hero" data-tab="exposicion">Ver la exposición</a>
+            <a href="#exposicion" class="btn-cta" data-tab="exposicion">Ver la exposición →</a>
           </div>
+
         </div>
       </div>
     </section>

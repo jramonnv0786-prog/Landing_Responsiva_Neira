@@ -49,6 +49,52 @@ body:has(#modo-oscuro:checked) .card-tag {
 }
 
 
+/*  Pestaña Visitar  */
+/*  #E0647A: rojo aclarado, porque #9B2335 apenas se lee sobre fondo oscuro  */
+
+body:has(#modo-oscuro:checked) .visit-head {
+  border-bottom-color: rgba(242, 224, 182, 0.12);
+}
+
+body:has(#modo-oscuro:checked) .visit-title em,
+body:has(#modo-oscuro:checked) .info-num,
+body:has(#modo-oscuro:checked) .destacado,
+body:has(#modo-oscuro:checked) .info-link {
+  color: #E0647A;
+}
+
+body:has(#modo-oscuro:checked) .chip {
+  border-color: rgba(242, 224, 182, 0.2);
+}
+
+body:has(#modo-oscuro:checked) .chip::before {
+  background-color: #E0647A;
+}
+
+body:has(#modo-oscuro:checked) .info {
+  background-color: #231A12;
+  border-color: rgba(242, 224, 182, 0.12);
+  border-top-color: #E0647A;
+}
+
+body:has(#modo-oscuro:checked) .info-list li {
+  border-bottom-color: rgba(242, 224, 182, 0.12);
+}
+
+body:has(#modo-oscuro:checked) .badge {
+  border-color: #6C86E8;
+  color: #6C86E8;
+}
+
+body:has(#modo-oscuro:checked) .visit-cta {
+  background-color: #5C1424;
+}
+
+body:has(#modo-oscuro:checked) .btn-cta {
+  color: #5C1424;
+}
+
+
 /*  Botón de cambio de tema  */
 
 body:has(#modo-oscuro:checked) .btn-tema::after {

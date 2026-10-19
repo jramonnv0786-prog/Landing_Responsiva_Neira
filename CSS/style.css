@@ -284,6 +284,183 @@ body {
   font-size: 13px;
   line-height: 1.5;
 }
+/*Pestaña Visitar*/
+
+/*GRID 1 · Cabecera: título | descripción (2 columnas iguales)*/
+.visit-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(26, 18, 8, 0.15);
+}
+.visit-head .eyebrow-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.visit-title {
+  margin: 15px 0 0;
+  font-size: 56px;
+  font-weight: normal;
+  line-height: 1.05;
+}
+.visit-title em {
+  color: #9B2335;
+}
+.visit-desc {
+  margin: 0 0 15px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/*Etiqueta redonda con un punto rojo delante*/
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid rgba(26, 18, 8, 0.2);
+  border-radius: 999px;
+  font-size: 13px;
+}
+.chip::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #9B2335;
+}
+
+/*GRID 2 · Tres tarjetas de información (3 columnas iguales)*/
+.visit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background-color: #FBF3E0;
+  border: 1px solid rgba(26, 18, 8, 0.15);
+  border-top: 3px solid #9B2335;
+  border-radius: 8px;
+}
+.info h3 {
+  margin: 0 0 20px;
+  font-size: 26px;
+  font-weight: normal;
+}
+.info-num {
+  margin-right: 6px;
+  font-size: 14px;
+  font-style: italic;
+  color: #9B2335;
+}
+
+/*Filas de las listas: texto a la izquierda, valor a la derecha*/
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px dashed rgba(26, 18, 8, 0.2);
+}
+.info-list li:last-child {
+  border-bottom: none;
+}
+.info-list em {
+  opacity: 0.7;
+}
+.destacado {
+  color: #9B2335;
+}
+.badge {
+  padding: 3px 10px;
+  border: 1px solid #002395;
+  border-radius: 999px;
+  color: #002395;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/*Tarjeta "Cómo llegar"*/
+.info-dir {
+  margin: 0 0 15px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+.info-text {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+.info-link {
+  align-self: flex-start;
+  margin-top: auto;
+  color: #9B2335;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/*GRID 3 · Llamada a la acción: texto | botón (1fr auto)*/
+.visit-cta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
+  padding: 35px 45px;
+  background-color: #9B2335;
+  color: #F2E0B6;
+  border-radius: 8px;
+}
+.visit-cta h3 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: normal;
+}
+.visit-cta p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+.btn-cta {
+  padding: 12px 25px;
+  background-color: #F2E0B6;
+  color: #9B2335;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+}
+
+/*Móvil: las tres rejillas pasan a una sola columna*/
+@media (max-width: 768px) {
+  .visit-head,
+  .visit-grid,
+  .visit-cta {
+    grid-template-columns: 1fr;
+  }
+  .visit-title {
+    font-size: 42px;
+  }
+  .visit-cta {
+    padding: 30px 25px;
+  }
+}
+
 /*Footer*/
 footer {
   background-color: #1A1208;
