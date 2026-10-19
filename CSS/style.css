@@ -4,6 +4,14 @@
   --botones_etiquetas_nArt:     #9B2335;   botones, etiquetas y números de artículo 
   --enlaces:   #002395;   eyebrows, enlaces y franja azul de la tricolor */
 
+header {
+  background-color: #1A1208;
+  color: #F2E0B6;
+
+  position: sticky;  
+  top: 0;
+  z-index: 10;
+}
 
 .header-inner {
   max-width: 1200px;
@@ -14,7 +22,13 @@
   justify-content: space-between;
 }
 
-
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #F2E0B6 ;
+  text-decoration: none;               
+}
 
 .tricolor-bar { 
     display: flex; 
@@ -41,8 +55,14 @@
     font-size: 18px; 
 }
 
-.tabs { display: flex; gap: 25px; 
-  
+.tabs { display: flex; gap: 25px; }
+
+
+.tab {
+  color: #F2E0B6 ;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent #9B2335; 
 }
 
 .tab:hover {
