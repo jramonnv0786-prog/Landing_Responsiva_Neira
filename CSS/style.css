@@ -590,10 +590,10 @@ footer {
 
 
 /*RESPONSIVE (al final para que gane a las reglas anteriores)*/
-/*Monitor (más de 1024px): 3 columnas, el diseño base*/
+/*Escritorio (más de 900px): 3 columnas, el diseño base*/
 
 /*Tablet / pantalla pequeña: grids de 2 en 2 y pestañas en una segunda fila*/
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
