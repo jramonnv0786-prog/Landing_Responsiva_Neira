@@ -118,6 +118,20 @@ body {
   background: linear-gradient( rgba(26, 18, 8, 0.7), transparent 50%);
 }
 
+/*Franja tricolor en el borde inferior del hero*/
+/*Separando el hero del body*/
+.hero .hero-tricolor {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+.hero .hero-tricolor span {
+  flex: 1;
+  height: 5px;
+}
+
 .hero-contenido {
   position: relative;          
   height: 100%;
