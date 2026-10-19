@@ -425,20 +425,6 @@ body {
   border-radius: 999px;
 }
 
-/*Móvil: todas las rejillas pasan a una sola columna*/
-@media (max-width: 768px) {
-  .grid,
-  .visit-cta {
-    grid-template-columns: 1fr;
-  }
-  .section-title {
-    font-size: 42px;
-  }
-  .visit-cta {
-    padding: 30px 25px;
-  }
-}
-
 /*Footer*/
 footer {
   background-color: #1A1208;
@@ -533,4 +519,52 @@ footer {
 
 .btn-tema::after {
   content: "Cambiar a modo oscuro";
+}
+
+
+/*RESPONSIVE (al final para que gane a las reglas anteriores)*/
+/*Monitor (más de 1024px): 3 columnas, el diseño base*/
+
+/*Tablet / pantalla pequeña: grids de 2 en 2 y pestañas en una segunda fila*/
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header-inner {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+  .tabs {
+    order: 3;   /*pasa detrás del botón: logo y botón arriba, pestañas abajo*/
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/*Móvil: grids de 1 en 1 y cabecera más compacta*/
+@media (max-width: 640px) {
+  .grid,
+  .visit-cta {
+    grid-template-columns: 1fr;
+  }
+  .header-inner,
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .tabs {
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-size: 14px;
+  }
+  .btn-tema {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .section-title {
+    font-size: 42px;
+  }
+  .visit-cta {
+    padding: 30px 25px;
+  }
 }
