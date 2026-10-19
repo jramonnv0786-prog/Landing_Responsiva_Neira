@@ -222,7 +222,7 @@ body {
   transform: translateY(-4px);
  
 }
-
+/*Contenedor de imagen de la tarjeta*/
 .card-img {                 
   position: relative;       
   overflow: hidden;         
