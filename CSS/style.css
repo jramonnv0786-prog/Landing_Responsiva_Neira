@@ -1,11 +1,4 @@
 @charset "UTF-8";
-/* Traemos los colores, la función espacio() y los mixins de _variables.scss */
-/*Paleta de colores, guardado en variables, si cambio uno aquí cambia en toda la web.*/
-/*Un burdeos más oscuro, calculado con la función nativa darken()*/
-/*Unidad base para los espacios 4px.*/
-/*Función que multiplica la base por un factor y devuelve el resultado*/
-/*Mixin con tamaño de la letra, espaciados y separación entre letras*/
-/*Mixin, botón redondeado, con el fondo y color de texto como parámetros*/
 /* Base de la página: al pulsar el menú baja suave, y las secciones dejan
    70px arriba para que la cabecera fija no tape los títulos */
 html {
@@ -71,7 +64,7 @@ body {
   border-bottom-color: currentColor;
 }
 
-/* Botón burdeos: al pasar el ratón se oscurece un 7% con la función nativa darken() */
+/* Botón burdeos: al pasar el ratón se oscurece */
 .btn-burdeos {
   background-color: #9B2335;
   color: #F2E0B6;
@@ -82,7 +75,7 @@ body {
   color: #F2E0B6;
 }
 
-/* Los botones redondeados salen del mixin: fondo pergamino y letras burdeos */
+/* Botones redondeados: fondo pergamino y letras burdeos */
 .btn-cta,
 .btn-tema {
   display: inline-block;
@@ -124,7 +117,7 @@ body {
 }
 
 /* Hero: la imagen grande del principio. Encima lleva dos degradados
-   oscuros (rgba nativa con $tinta) para que el texto se lea bien */
+   oscuros (con rgba) para que el texto se lea bien */
 .hero {
   height: 600px;
   min-height: 450px;
