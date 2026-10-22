@@ -1,20 +1,20 @@
 @use 'variables' as *;
 
 
-// *
+/*Todo el modo oscuro se aplica una vez el checkbox está marcado.*/
 body:has(#modo-oscuro:checked) {
   background-color: $tinta;
   color: $pergamino;
 
-  // *
+  /*El contenido del botón cambia para volver al modo claro*/
   .btn-tema::after { content: "Cambiar a modo claro"; }
 
-  // *
+  /*Líneas y etiquetas, rgba nativa y eyebrows en azul claro*/
   .section-head { border-bottom-color: rgba($pergamino, 0.12); }
   .eyebrow { color: $azul-claro; }
   .chip { border-color: rgba($pergamino, 0.2); }
 
-  // *
+  /*Marrón oscuro*/ 
   .card,
   .info,
   .article {
@@ -25,7 +25,7 @@ body:has(#modo-oscuro:checked) {
   .card { border-color: rgba($pergamino, 0.25); }
   .card-tag { color: $pergamino; }
 
-  // *
+  /*Se pinta el borde de arriba de derechos y visita y colorea de nuevo la franja en burdeos*/ 
   .article,
   .info {
     border-color: rgba($pergamino, 0.12);
@@ -42,7 +42,7 @@ body:has(#modo-oscuro:checked) {
     background-color: rgba($pergamino, 0.05);
   }
 
-  // *
+  /*En visita: separadores de las listas en pergamino transparente y etiquetas en azul */
   .info-list li { border-bottom-color: rgba($pergamino, 0.12); }
 
   .badge-azul {
@@ -50,7 +50,7 @@ body:has(#modo-oscuro:checked) {
     color: $azul-claro;
   }
 
-  // *
+  /*Bloque de Liberté con burdeos oscuro, aplicado con la función darken() */
   .visit-cta { background-color: $burdeos-oscuro; }
   .visit-cta .btn-cta { color: $burdeos-oscuro; }
 }

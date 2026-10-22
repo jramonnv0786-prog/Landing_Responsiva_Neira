@@ -5,12 +5,17 @@
 /*Función que multiplica la base por un factor y devuelve el resultado*/
 /*Mixin con tamaño de la letra, espaciados y separación entre letras*/
 /*Mixin, botoón redondeado, con el fondo y color de texto como parámetros*/
+/*Todo el modo oscuro se aplica una vez el checkbox está marcado.*/
 body:has(#modo-oscuro:checked) {
   background-color: #1A1208;
   color: #F2E0B6;
+  /*El contenido del botón cambia para volver al modo claro*/
 }
 body:has(#modo-oscuro:checked) .btn-tema::after {
   content: "Cambiar a modo claro";
+}
+body:has(#modo-oscuro:checked) {
+  /*Líneas y etiquetas, rgba nativa y eyebrows en azul claro*/
 }
 body:has(#modo-oscuro:checked) .section-head {
   border-bottom-color: rgba(242, 224, 182, 0.12);
@@ -20,6 +25,9 @@ body:has(#modo-oscuro:checked) .eyebrow {
 }
 body:has(#modo-oscuro:checked) .chip {
   border-color: rgba(242, 224, 182, 0.2);
+}
+body:has(#modo-oscuro:checked) {
+  /*Marrón oscuro*/
 }
 body:has(#modo-oscuro:checked) .card,
 body:has(#modo-oscuro:checked) .info,
@@ -32,6 +40,9 @@ body:has(#modo-oscuro:checked) .card {
 }
 body:has(#modo-oscuro:checked) .card-tag {
   color: #F2E0B6;
+}
+body:has(#modo-oscuro:checked) {
+  /*Se pinta el borde de arriba de derechos y visita y colorea de nuevo la franja en burdeos*/
 }
 body:has(#modo-oscuro:checked) .article,
 body:has(#modo-oscuro:checked) .info {
@@ -49,12 +60,18 @@ body:has(#modo-oscuro:checked) .quote {
   border-left-color: #6C86E8;
   background-color: rgba(242, 224, 182, 0.05);
 }
+body:has(#modo-oscuro:checked) {
+  /*En visita: separadores de las listas en pergamino transparente y etiquetas en azul */
+}
 body:has(#modo-oscuro:checked) .info-list li {
   border-bottom-color: rgba(242, 224, 182, 0.12);
 }
 body:has(#modo-oscuro:checked) .badge-azul {
   border-color: #6C86E8;
   color: #6C86E8;
+}
+body:has(#modo-oscuro:checked) {
+  /*Bloque de Liberté con burdeos oscuro, aplicado con la función darken() */
 }
 body:has(#modo-oscuro:checked) .visit-cta {
   background-color: rgb(92.5921052632, 20.9078947368, 31.6605263158);
