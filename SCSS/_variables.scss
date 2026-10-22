@@ -8,7 +8,7 @@ $blanco: #ffffff;
 $tarjeta: #F8EBCC;
 $tarjeta-oscura: #2A1E10;
 
-/*Un burdeos más oscuros, calculado con la función nativa darken()*/
+/*Un burdeos más oscuro, calculado con la función nativa darken()*/
 $burdeos-oscuro: darken($burdeos, 15%);
 
 /*Unidad base para los espacios 4px.*/
@@ -28,7 +28,7 @@ $base-espacio: 4px;
   letter-spacing: $espaciado;
 }
 
-/*Mixin, botoón redondeado, con el fondo y color de texto como parámetros*/ 
+/*Mixin, botón redondeado, con el fondo y color de texto como parámetros*/ 
 @mixin boton-pildora($fondo, $texto) {
   display: inline-block;
   padding: 12px 25px;
