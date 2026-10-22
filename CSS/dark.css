@@ -1,137 +1,92 @@
-/* =========================================================
-   Musée de la Révolution Française · modo oscuro
+/*Ajuste de Bootsrap en dark.css*/
+ 
 
-   Se carga después de style.css y solo cambia colores:
-   tamaños, posiciones y márgenes siguen saliendo de style.css.
-
-   Todas las reglas empiezan por body:has(#modo-oscuro:checked), que quiere
-   decir "el body que tiene dentro el checkbox del botón de tema marcado".
-   Así el modo oscuro se enciende y se apaga con el botón, sin JavaScript.
-
-   Va en el mismo orden que la página, de la cabecera al pie: base, cabecera,
-   hero, lo común a todos los apartados, Exposición, Derechos, Protagonistas,
-   Visitar y pie. Las partes que no cambian también salen, con una nota.
-
-   No hace falta tocar la cabecera, el hero, el pie ni los detalles en burdeos:
-   se ven igual en los dos modos.
-
-   Colores del modo oscuro
-     #1A1208  fondo de la página: la tinta pasa a ser el fondo
-     #F2E0B6  texto: y el pergamino pasa a ser el texto
-     #2A1E10  fondo de las tarjetas, un marrón algo más claro que el fondo
-     #6C86E8  azul más claro, porque el de siempre casi no se lee sobre oscuro
-     #5C1424  granate del bloque Liberté
-   ========================================================= */
-
-
-/* ---------- Base ---------- */
-
-body:has(#modo-oscuro:checked) {
-  background-color: #1A1208;
-  color: #F2E0B6;
-}
-
-
-/* ---------- Cabecera ---------- */
-/* Ya es oscura en modo claro, así que solo cambia el texto del botón */
-
-body:has(#modo-oscuro:checked) .btn-tema::after {
-  content: "Cambiar a modo claro";
-}
-
-
-/* ---------- Hero ---------- */
-/* No cambia: el texto va sobre una foto oscura en los dos modos */
-
-
-/* ---------- Lo que comparten todos los apartados ---------- */
-
+ 
 /* La línea fina bajo el título de cada apartado */
 body:has(#modo-oscuro:checked) .section-head {
   border-bottom-color: rgba(242, 224, 182, 0.12);
 }
-
+ 
 /* Los eyebrows, en azul claro */
 body:has(#modo-oscuro:checked) .eyebrow {
   color: #6C86E8;
 }
-
+ 
 body:has(#modo-oscuro:checked) .chip {
   border-color: rgba(242, 224, 182, 0.2);
 }
-
-/* Todas las tarjetas llevan el mismo fondo marrón */
+ 
+/* Todas las tarjetas llevan el mismo fondo marrón y el texto en pergamino */
 body:has(#modo-oscuro:checked) .card,
 body:has(#modo-oscuro:checked) .info,
 body:has(#modo-oscuro:checked) .article {
   background-color: #2A1E10;
+  color: #F2E0B6;
 }
-
-/* Los detalles en burdeos (#9B2335) se ven igual en los dos modos: no necesitan regla */
-
-
+ 
+ 
 /* ---------- Exposición: tarjetas con foto ---------- */
 /* Protagonistas usa estas mismas tarjetas */
-
+ 
 body:has(#modo-oscuro:checked) .card {
   border-color: rgba(242, 224, 182, 0.25);
 }
-
+ 
 /* La fecha encima de la foto, en pergamino en vez de blanco */
 body:has(#modo-oscuro:checked) .card-tag {
   color: #F2E0B6;
 }
-
-
+ 
+ 
 /* ---------- Derechos ---------- */
-
+ 
 /* border-color también pinta el borde de arriba, así que se vuelve a poner la franja burdeos */
 body:has(#modo-oscuro:checked) .article {
   border-color: rgba(242, 224, 182, 0.12);
   border-top-color: #9B2335;
 }
-
+ 
+body:has(#modo-oscuro:checked) .article:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+ 
 /* "Artículo 1" y la firma de la cita, en azul claro como los eyebrows */
 body:has(#modo-oscuro:checked) .article h3,
 body:has(#modo-oscuro:checked) .quote cite {
   color: #6C86E8;
 }
-
+ 
 /* La cita del final */
 body:has(#modo-oscuro:checked) .quote {
   border-left-color: #6C86E8;
   background-color: rgba(242, 224, 182, 0.05);
 }
-
-
-/* ---------- Protagonistas ---------- */
-/* Usa las tarjetas de Exposición: no necesita nada más */
-
-
+ 
+ 
 /* ---------- Visitar ---------- */
-
+ 
 /* Igual que en Derechos: se recupera la franja burdeos de arriba */
 body:has(#modo-oscuro:checked) .info {
   border-color: rgba(242, 224, 182, 0.12);
   border-top-color: #9B2335;
 }
-
+ 
 /* Los separadores de las listas de horario y servicios */
 body:has(#modo-oscuro:checked) .info-list li {
   border-bottom-color: rgba(242, 224, 182, 0.12);
 }
-
+ 
 /* Las etiquetas azules (Grupos, PMR...) */
-body:has(#modo-oscuro:checked) .badge {
+body:has(#modo-oscuro:checked) .badge-azul {
   border-color: #6C86E8;
   color: #6C86E8;
 }
-
+ 
 /* El bloque Liberté, más oscuro, y el texto del botón a juego */
 body:has(#modo-oscuro:checked) .visit-cta {
   background-color: #5C1424;
 }
-
-body:has(#modo-oscuro:checked) .btn-cta {
+ 
+body:has(#modo-oscuro:checked) .visit-cta .btn-cta {
   color: #5C1424;
 }
