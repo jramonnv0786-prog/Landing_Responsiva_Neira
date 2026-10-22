@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/*Aplicación de Bootsrap en dark.css*/
+/* ---------- Base ---------- */
+body:has(#modo-oscuro:checked) {
+  background-color: #1A1208;
+  color: #F2E0B6;
+}
+
+/* ---------- Cabecera ---------- */
+body:has(#modo-oscuro:checked) .btn-tema::after {
+  content: "Cambiar a modo claro";
+}
+
+/* ---------- Hero y pie ---------- */
+/* No cambian: son oscuros en los dos modos */
+/* La línea fina bajo el título de cada apartado */
+body:has(#modo-oscuro:checked) .section-head {
+  border-bottom-color: rgba(242, 224, 182, 0.12);
+}
+
+/* Los eyebrows, en azul claro */
+body:has(#modo-oscuro:checked) .eyebrow {
+  color: #6C86E8;
+}
+
+body:has(#modo-oscuro:checked) .chip {
+  border-color: rgba(242, 224, 182, 0.2);
+}
+
+/* Todas las tarjetas llevan el mismo fondo marrón y el texto en pergamino */
+body:has(#modo-oscuro:checked) .card,
+body:has(#modo-oscuro:checked) .info,
+body:has(#modo-oscuro:checked) .article {
+  background-color: #2A1E10;
+  color: #F2E0B6;
+}
+
+/* ---------- Exposición: tarjetas con foto ---------- */
+/* Protagonistas usa estas mismas tarjetas */
+body:has(#modo-oscuro:checked) .card {
+  border-color: rgba(242, 224, 182, 0.25);
+}
+
+/* La fecha encima de la foto, en pergamino en vez de blanco */
+body:has(#modo-oscuro:checked) .card-tag {
+  color: #F2E0B6;
+}
+
+/* ---------- Derechos ---------- */
+/* border-color también pinta el borde de arriba, así que se vuelve a poner la franja burdeos */
+body:has(#modo-oscuro:checked) .article {
+  border-color: rgba(242, 224, 182, 0.12);
+  border-top-color: #9B2335;
+}
+
+body:has(#modo-oscuro:checked) .article:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* "Artículo 1" y la firma de la cita, en azul claro como los eyebrows */
+body:has(#modo-oscuro:checked) .article h3,
+body:has(#modo-oscuro:checked) .quote cite {
+  color: #6C86E8;
+}
+
+/* La cita del final */
+body:has(#modo-oscuro:checked) .quote {
+  border-left-color: #6C86E8;
+  background-color: rgba(242, 224, 182, 0.05);
+}
+
+/* ---------- Visitar ---------- */
+/* Igual que en Derechos: se recupera la franja burdeos de arriba */
+body:has(#modo-oscuro:checked) .info {
+  border-color: rgba(242, 224, 182, 0.12);
+  border-top-color: #9B2335;
+}
+
+/* Los separadores de las listas de horario y servicios */
+body:has(#modo-oscuro:checked) .info-list li {
+  border-bottom-color: rgba(242, 224, 182, 0.12);
+}
+
+/* Las etiquetas azules (Grupos, PMR...) */
+body:has(#modo-oscuro:checked) .badge-azul {
+  border-color: #6C86E8;
+  color: #6C86E8;
+}
+
+/* El bloque Liberté, más oscuro, y el texto del botón a juego */
+body:has(#modo-oscuro:checked) .visit-cta {
+  background-color: #5C1424;
+}
+
+body:has(#modo-oscuro:checked) .visit-cta .btn-cta {
+  color: #5C1424;
+}/*# sourceMappingURL=dark.css.map */
