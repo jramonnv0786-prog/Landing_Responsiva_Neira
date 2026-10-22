@@ -1,13 +1,6 @@
 @charset "UTF-8";
 /* Traemos los colores, la función espacio() y los mixins de _variables.scss */
 /*Paleta de colores, guardado en variables, si cambio uno aquí cambia en toda la web.*/
-/*Un burdeos más oscuros, calculado con la función nativa darken()*/
-/*Unidad base para los espacios 4px.*/
-/*Función que multiplica la base por un factor y devuelve el resultado*/
-/*Mixin con tamaño de la letra, espaciados y separación entre letras*/
-/*Mixin, botoón redondeado, con el fondo y color de texto como parámetros*/
-/* Base de la página: al pulsar el menú baja suave, y las secciones dejan
-   70px arriba para que la cabecera fija no tape los títulos */
 html {
   scroll-behavior: smooth;
 }

@@ -74,8 +74,8 @@ body:has(#modo-oscuro:checked) {
   /*Bloque de Liberté con burdeos oscuro, aplicado con la función darken() */
 }
 body:has(#modo-oscuro:checked) .visit-cta {
-  background-color: rgb(36.310629515%, 8.1991744066%, 12.4158926729%);
+  background-color: rgb(92.5921052632, 20.9078947368, 31.6605263158);
 }
 body:has(#modo-oscuro:checked) .visit-cta .btn-cta {
-  color: rgb(36.310629515%, 8.1991744066%, 12.4158926729%);
+  color: rgb(92.5921052632, 20.9078947368, 31.6605263158);
 }
