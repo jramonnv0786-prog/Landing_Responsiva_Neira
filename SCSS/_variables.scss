@@ -1,4 +1,4 @@
-// *
+/*Paleta de colores, guardado en variables, si cambio uno aquí cambia en toda la web.*/
 $pergamino: #F2E0B6;
 $tinta: #1A1208;
 $burdeos: #9B2335;
@@ -8,27 +8,27 @@ $blanco: #ffffff;
 $tarjeta: #F8EBCC;
 $tarjeta-oscura: #2A1E10;
 
-// *
+/*Un burdeos más oscuros, calculado con la función nativa darken()*/
 $burdeos-oscuro: darken($burdeos, 15%);
 
-// *
+/*Unidad base para los espacios 4px.*/
 $base-espacio: 4px;
 
 
-// *
+/*Función que multiplica la base por un factor y devuelve el resultado*/ 
 @function espacio($factor) {
   @return $base-espacio * $factor;
 }
 
 
-// *
+/*Mixin con tamaño de la letra, espaciados y separación entre letras*/
 @mixin versalitas($tamano, $espaciado: 0.12em) {
   font-size: $tamano;
   text-transform: uppercase;
   letter-spacing: $espaciado;
 }
 
-// *
+/*Mixin, botoón redondeado, con el fondo y color de texto como parámetros*/ 
 @mixin boton-pildora($fondo, $texto) {
   display: inline-block;
   padding: 12px 25px;

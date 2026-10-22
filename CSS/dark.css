@@ -1,3 +1,10 @@
+@charset "UTF-8";
+/*Paleta de colores, guardado en variables, si cambio uno aquí cambia en toda la web.*/
+/*Un burdeos más oscuros, calculado con la función nativa darken()*/
+/*Unidad base para los espacios 4px.*/
+/*Función que multiplica la base por un factor y devuelve el resultado*/
+/*Mixin con tamaño de la letra, espaciados y separación entre letras*/
+/*Mixin, botoón redondeado, con el fondo y color de texto como parámetros*/
 body:has(#modo-oscuro:checked) {
   background-color: #1A1208;
   color: #F2E0B6;
@@ -50,8 +57,8 @@ body:has(#modo-oscuro:checked) .badge-azul {
   color: #6C86E8;
 }
 body:has(#modo-oscuro:checked) .visit-cta {
-  background-color: rgb(36.310629515%, 8.1991744066%, 12.4158926729%);
+  background-color: rgb(92.5921052632, 20.9078947368, 31.6605263158);
 }
 body:has(#modo-oscuro:checked) .visit-cta .btn-cta {
-  color: rgb(36.310629515%, 8.1991744066%, 12.4158926729%);
+  color: rgb(92.5921052632, 20.9078947368, 31.6605263158);
 }
