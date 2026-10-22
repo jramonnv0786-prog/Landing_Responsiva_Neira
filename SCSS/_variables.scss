@@ -1,0 +1,43 @@
+// *
+$pergamino: #F2E0B6;
+$tinta: #1A1208;
+$burdeos: #9B2335;
+$azul: #002395;
+$azul-claro: #6C86E8;
+$blanco: #ffffff;
+$tarjeta: #F8EBCC;
+$tarjeta-oscura: #2A1E10;
+
+// *
+$burdeos-oscuro: darken($burdeos, 15%);
+
+// *
+$base-espacio: 4px;
+
+
+// *
+@function espacio($factor) {
+  @return $base-espacio * $factor;
+}
+
+
+// *
+@mixin versalitas($tamano, $espaciado: 0.12em) {
+  font-size: $tamano;
+  text-transform: uppercase;
+  letter-spacing: $espaciado;
+}
+
+// *
+@mixin boton-pildora($fondo, $texto) {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: $fondo;
+  color: $texto;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+  transition: transform .2s;
+
+  &:hover { transform: translateY(-4px); color: $texto; }
+}
