@@ -1,3 +1,5 @@
+# 2.8. Actividad con Sass
+
 # Objetivo
 Implementar la página principal (landing) del ejercicio anterior, esta vez usando sass.
 
