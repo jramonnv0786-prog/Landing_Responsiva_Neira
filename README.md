@@ -23,4 +23,4 @@ Una vez tengáis todo listo, compilad el scss en un css nativo (también podéis
 Una vez compilado, hace uso de las github pages de vuestro repo para que apunte a la rama "scss". **A ver qué tal se ve online!**
 
 
-Versión CSS en la barra main, scss es rama por defecto para que se muestren los lenguajes trabajados.
+Versión CSS en la rama main, scss es rama por defecto para que se muestren los lenguajes trabajados.
