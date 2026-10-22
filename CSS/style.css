@@ -1,3 +1,13 @@
+@charset "UTF-8";
+/* Traemos los colores, la función espacio() y los mixins de _variables.scss */
+/*Paleta de colores, guardado en variables, si cambio uno aquí cambia en toda la web.*/
+/*Un burdeos más oscuros, calculado con la función nativa darken()*/
+/*Unidad base para los espacios 4px.*/
+/*Función que multiplica la base por un factor y devuelve el resultado*/
+/*Mixin con tamaño de la letra, espaciados y separación entre letras*/
+/*Mixin, botoón redondeado, con el fondo y color de texto como parámetros*/
+/* Base de la página: al pulsar el menú baja suave, y las secciones dejan
+   70px arriba para que la cabecera fija no tape los títulos */
 html {
   scroll-behavior: smooth;
 }
@@ -12,6 +22,8 @@ body {
   color: #1A1208;
 }
 
+/* Cabecera: fondo oscuro y letras en pergamino.
+   Los enlaces van anidados dentro de .site-header */
 .site-header {
   background-color: #1A1208;
   color: #F2E0B6;
@@ -21,6 +33,7 @@ body {
   color: #F2E0B6;
 }
 
+/* Las tres rayitas de la bandera francesa del logo */
 .tricolor-bar span {
   width: 8px;
   height: 32px;
@@ -47,6 +60,8 @@ body {
   font-family: inherit;
 }
 
+/* Pestañas del menú: al pasar el ratón aparece una línea debajo.
+   El & equivale a escribir .tab:hover y .tab:focus */
 .tab {
   padding-bottom: 4px !important;
   border-bottom: 2px solid transparent;
@@ -56,16 +71,18 @@ body {
   border-bottom-color: currentColor;
 }
 
+/* Botón burdeos: al pasar el ratón se oscurece un 7% con la función nativa darken() */
 .btn-burdeos {
   background-color: #9B2335;
   color: #F2E0B6;
   border: none;
 }
 .btn-burdeos:hover {
-  background-color: rgb(49.3632610939%, 11.1465428277%, 16.8790505676%);
+  background-color: rgb(125.8763157895, 28.4236842105, 43.0415789474);
   color: #F2E0B6;
 }
 
+/* Los botones redondeados salen del mixin: fondo pergamino y letras burdeos */
 .btn-cta,
 .btn-tema {
   display: inline-block;
@@ -83,14 +100,19 @@ body {
   color: #9B2335;
 }
 
+/* Botón del modo oscuro: el texto se pone desde el CSS con ::after */
 .btn-tema {
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .btn-tema::after {
   content: "modo oscuro";
 }
 
+/* El checkbox del modo oscuro está escondido, pero si llegas con el
+   tabulador se marca el botón con un borde azul para saber dónde estás */
 .toggle-input {
   position: absolute;
   opacity: 0;
@@ -101,6 +123,8 @@ body {
   outline-offset: 2px;
 }
 
+/* Hero: la imagen grande del principio. Encima lleva dos degradados
+   oscuros (rgba nativa con $tinta) para que el texto se lea bien */
 .hero {
   height: 600px;
   min-height: 450px;
@@ -108,7 +132,8 @@ body {
 }
 
 .hero-img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .hero-overlay-h {
@@ -139,6 +164,8 @@ body {
   background-color: #9B2335;
 }
 
+/* Cabecera de cada sección: el texto pequeño de arriba (eyebrow),
+   el título grande y la descripción */
 .eyebrow {
   color: #002395;
   font-size: 13px;
@@ -166,6 +193,7 @@ body {
   line-height: 1.6;
 }
 
+/* Etiquetas redondas con un puntito burdeos delante (lo dibuja el ::before) */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -183,6 +211,8 @@ body {
   background-color: #9B2335;
 }
 
+/* Tarjetas: usamos la .card de Bootstrap y le cambiamos el aspecto.
+   Al pasar el ratón la tarjeta sube un poco y la foto hace zoom */
 .card {
   background-color: #F8EBCC;
   color: #1A1208;
@@ -206,6 +236,10 @@ body {
 .card:hover .card-img-wrap img {
   transform: scale(1.05);
 }
+.card {
+  /* Tarjetas de solo texto (Derechos y Visitar): esquinas redondeadas
+     y una franja burdeos arriba. &.article equivale a .card.article */
+}
 .card.article, .card.info {
   padding: 25px;
   border: 1px solid rgba(26, 18, 8, 0.15);
@@ -213,6 +247,7 @@ body {
   border-radius: 8px;
 }
 
+/* Marco de la foto: todas iguales (3:2) y lo que sobra se recorta */
 .card-img-wrap {
   position: relative;
   overflow: hidden;
@@ -221,11 +256,13 @@ body {
 .card-img-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
   transition: transform 0.4s;
 }
 
+/* La fecha que va encima de la foto, abajo a la izquierda */
 .card-tag {
   position: absolute;
   left: 12px;
@@ -233,11 +270,13 @@ body {
   color: #ffffff;
 }
 
+/* Protagonistas: foto cuadrada centrada en la cara y textos más pequeños */
 .card-retrato .card-img-wrap {
   aspect-ratio: 1/1;
 }
 .card-retrato .card-img-wrap img {
-  object-position: top;
+  -o-object-position: top;
+     object-position: top;
 }
 .card-retrato .eyebrow {
   display: block;
@@ -252,6 +291,8 @@ body {
   line-height: 1.5;
 }
 
+/* Derechos: cada artículo tiene "Artículo X", un título y el texto en cursiva.
+   Al pasar el ratón aparece una sombra suave */
 .article:hover {
   box-shadow: 0 8px 18px rgba(26, 18, 8, 0.15);
 }
@@ -276,6 +317,7 @@ body {
   font-style: italic;
 }
 
+/* Los números en burdeos y cursiva de Derechos y Visitar */
 .article-num,
 .info-num {
   color: #9B2335;
@@ -291,12 +333,15 @@ body {
   margin-right: 6px;
 }
 
+/* Visitar: tarjetas de horario, servicios y cómo llegar */
 .info h3 {
   margin: 0 0 20px;
   font-size: 26px;
   font-weight: normal;
 }
 
+/* Listas de horario: cada fila separada por una línea de puntos,
+   menos la última (&:last-child) */
 .info-list li {
   display: flex;
   justify-content: space-between;
@@ -317,6 +362,7 @@ body {
   color: #9B2335;
 }
 
+/* Etiquetas azules tipo "Grupos" o "PMR" (badge de Bootstrap, pero solo con borde) */
 .badge-azul {
   background: transparent;
   border: 1px solid #002395;
@@ -344,6 +390,7 @@ body {
   font-weight: bold;
 }
 
+/* Cita: raya azul a la izquierda, fondo muy suave y comillas grandes en burdeos */
 .quote {
   padding: 28px 32px;
   border-left: 4px solid #002395;
@@ -367,6 +414,7 @@ body {
   color: #9B2335;
 }
 
+/* Bloque final "Liberté": caja burdeos que invita a visitar la exposición */
 .visit-cta {
   padding: 35px 25px;
   background-color: #9B2335;
@@ -387,6 +435,7 @@ body {
   color: #9B2335;
 }
 
+/* Pie de página: oscuro como la cabecera, con la franja tricolor arriba */
 footer {
   background-color: #1A1208;
   color: #F2E0B6;
@@ -434,16 +483,20 @@ footer {
   font-size: 12px;
 }
 
+/* Responsive */
+/* Pantallas grandes (desde 992px): el bloque Liberté con más aire a los lados */
 @media (min-width: 992px) {
   .visit-cta {
     padding: 35px 45px;
   }
 }
+/* Móvil (menos de 768px): Bootstrap mete el menú en el botón hamburguesa */
 @media (max-width: 767.98px) {
   .header-acciones {
     padding: 10px 0 4px;
   }
 }
+/* Tablet (de 768 a 991px): el menú sigue en una línea, pero más apretado para que quepa */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .logo-title {
     font-size: 15px;
@@ -461,6 +514,7 @@ footer {
     font-size: 13px;
   }
 }
+/* Móvil pequeño (menos de 576px): título y botón de tema más pequeños */
 @media (max-width: 575.98px) {
   .section-title {
     font-size: 42px;
