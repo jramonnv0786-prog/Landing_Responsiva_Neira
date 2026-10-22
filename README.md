@@ -21,3 +21,6 @@ Implementar la página principal (landing) del ejercicio anterior, esta vez usan
 Una vez tengáis todo listo, compilad el scss en un css nativo (también podéis usar plugins y configurar vuestro ide para que detecto los cambios en el scss y lo precompile automáticamente).
 
 Una vez compilado, hace uso de las github pages de vuestro repo para que apunte a la rama "scss". **A ver qué tal se ve online!**
+
+
+Versión CSS en la barra main, scss es rama por defecto para que se muestren los lenguajes trabajados.
