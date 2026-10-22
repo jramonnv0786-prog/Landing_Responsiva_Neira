@@ -1,4 +1,23 @@
-/*Ajuste de Bootsrap en dark.css*/
+/*Aplicación de Bootsrap en dark.css*/
+
+/* ---------- Base ---------- */
+ 
+body:has(#modo-oscuro:checked) {
+  background-color: #1A1208;
+  color: #F2E0B6;
+}
+ 
+ 
+/* ---------- Cabecera ---------- */
+
+ 
+body:has(#modo-oscuro:checked) .btn-tema::after {
+  content: "Cambiar a modo claro";
+}
+ 
+ 
+/* ---------- Hero y pie ---------- */
+/* No cambian: son oscuros en los dos modos */
  
 
  
