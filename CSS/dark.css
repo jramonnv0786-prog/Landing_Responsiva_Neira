@@ -1,11 +1,8 @@
 @charset "UTF-8";
 /*Paleta de colores, guardado en variables, si cambio uno aquí cambia en toda la web.*/
 /*Un burdeos más oscuros, calculado con la función nativa darken()*/
-/*Unidad base para los espacios 4px.*/
-/*Función que multiplica la base por un factor y devuelve el resultado*/
-/*Mixin con tamaño de la letra, espaciados y separación entre letras*/
-/*Mixin, botoón redondeado, con el fondo y color de texto como parámetros*/
-/*Todo el modo oscuro se aplica una vez el checkbox está marcado.*/
+
+
 body:has(#modo-oscuro:checked) {
   background-color: #1A1208;
   color: #F2E0B6;
